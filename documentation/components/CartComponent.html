@@ -1,0 +1,827 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>equifiber-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">equifiber-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  CartComponent</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/cart.component.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-cart</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+</div>
+                </td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;main class&#x3D;&quot;container py-5&quot;&gt;
+  &lt;div class&#x3D;&quot;section-heading&quot;&gt;&lt;span class&#x3D;&quot;eyebrow&quot;&gt;Compra&lt;/span&gt;&lt;h1&gt;Carrito y pago simulado&lt;/h1&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;row g-4&quot;&gt;
+    &lt;div class&#x3D;&quot;col-12 col-lg-7&quot;&gt;
+      &lt;div class&#x3D;&quot;panel&quot;&gt;
+        &lt;ng-container *ngIf&#x3D;&quot;data.cart.length; else emptyCart&quot;&gt;
+          &lt;div class&#x3D;&quot;cart-row&quot; *ngFor&#x3D;&quot;let item of data.cart&quot;&gt;
+            &lt;div&gt;&lt;strong&gt;{{ item.name }}&lt;/strong&gt;&lt;br&gt;&lt;span&gt;{{ data.format(item.price) }} c/u&lt;/span&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;btn-group&quot; role&#x3D;&quot;group&quot; aria-label&#x3D;&quot;Cantidad&quot;&gt;
+              &lt;button class&#x3D;&quot;btn btn-outline-dark&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;data.changeQty(item.id, -1)&quot;&gt;-&lt;/button&gt;
+              &lt;button class&#x3D;&quot;btn btn-outline-dark&quot; type&#x3D;&quot;button&quot; disabled&gt;{{ item.qty }}&lt;/button&gt;
+              &lt;button class&#x3D;&quot;btn btn-outline-dark&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;data.changeQty(item.id, 1)&quot;&gt;+&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;strong&gt;{{ data.format(item.price * item.qty) }}&lt;/strong&gt;
+          &lt;/div&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-template #emptyCart&gt;&lt;p class&#x3D;&quot;mb-0&quot;&gt;Tu carrito esta vacio. Agrega productos desde la tienda.&lt;/p&gt;&lt;/ng-template&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;col-12 col-lg-5&quot;&gt;
+      &lt;form class&#x3D;&quot;panel&quot; [formGroup]&#x3D;&quot;checkoutForm&quot; [class.was-validated]&#x3D;&quot;submitted&quot; novalidate (ngSubmit)&#x3D;&quot;checkout()&quot;&gt;
+        &lt;h3&gt;Datos de despacho&lt;/h3&gt;
+        &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;shippingName&quot;&gt;Nombre receptor&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;shippingName&quot; formControlName&#x3D;&quot;name&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Ingresa al menos 3 caracteres.&lt;/div&gt;&lt;/div&gt;
+        &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;shippingAddress&quot;&gt;Direccion (opcional)&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;shippingAddress&quot; formControlName&#x3D;&quot;address&quot;&gt;&lt;div class&#x3D;&quot;form-text&quot;&gt;Puedes coordinar el despacho despues de la compra.&lt;/div&gt;&lt;/div&gt;
+        &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;shippingCity&quot;&gt;Comuna / ciudad&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;shippingCity&quot; formControlName&#x3D;&quot;city&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Campo obligatorio.&lt;/div&gt;&lt;/div&gt;
+        &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;paymentMethod&quot;&gt;Metodo de pago&lt;/label&gt;&lt;select class&#x3D;&quot;form-select&quot; id&#x3D;&quot;paymentMethod&quot; formControlName&#x3D;&quot;payment&quot;&gt;&lt;option value&#x3D;&quot;&quot;&gt;Selecciona...&lt;/option&gt;&lt;option&gt;Transferencia simulada&lt;/option&gt;&lt;option&gt;Tarjeta simulada&lt;/option&gt;&lt;/select&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Selecciona un metodo.&lt;/div&gt;&lt;/div&gt;
+        &lt;div class&#x3D;&quot;total-line&quot;&gt;&lt;span&gt;Total&lt;/span&gt;&lt;strong&gt;{{ data.format(data.cartTotal) }}&lt;/strong&gt;&lt;/div&gt;
+        &lt;div class&#x3D;&quot;d-flex gap-2 mt-3&quot;&gt;&lt;button class&#x3D;&quot;btn btn-forest flex-fill&quot; type&#x3D;&quot;submit&quot;&gt;Confirmar pago simulado&lt;/button&gt;&lt;button class&#x3D;&quot;btn btn-outline-dark flex-fill&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;clear()&quot;&gt;Limpiar&lt;/button&gt;&lt;/div&gt;
+        &lt;div class&#x3D;&quot;alert alert-success mt-3&quot; *ngIf&#x3D;&quot;success&quot;&gt;Pago realizado con exito. Tu compra quedo registrada.&lt;/div&gt;
+        &lt;div class&#x3D;&quot;alert alert-danger mt-3&quot; *ngIf&#x3D;&quot;submitted &amp;&amp; data.cart.length &#x3D;&#x3D;&#x3D; 0&quot;&gt;Agrega productos antes de pagar.&lt;/div&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/main&gt;
+</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#checkoutForm" >checkoutForm</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Public</span>
+                                <a href="#data" >data</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#submitted" >submitted</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#success" >success</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#checkout" >checkout</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#clear" >clear</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(data: <a href="../injectables/DataService.html" target="_self">DataService</a>, router: <a href="https://angular.dev/api/router/Router" target="_blank">Router</a>, fb: <a href="https://angular.dev/api/forms/FormBuilder" target="_blank">FormBuilder</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/cart.component.ts:50</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>data</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DataService.html" target="_self" >DataService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.dev/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.dev/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkout"></a>
+                    <span class="name">
+                        <span ><b>checkout</b></span>
+                        <a href="#checkout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkout()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="61"
+                                    class="link-to-prism">src/app/cart.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clear"></a>
+                    <span class="name">
+                        <span ><b>clear</b></span>
+                        <a href="#clear"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clear()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="74"
+                                    class="link-to-prism">src/app/cart.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkoutForm"></a>
+                    <span class="name">
+                        <span ><b>checkoutForm</b></span>
+                        <a href="#checkoutForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/cart.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="data"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>data</b></span>
+                        <a href="#data"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/DataService.html" target="_self" >DataService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/cart.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submitted"></a>
+                    <span class="name">
+                        <span ><b>submitted</b></span>
+                        <a href="#submitted"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/cart.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="success"></a>
+                    <span class="name">
+                        <span ><b>success</b></span>
+                        <a href="#success"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/cart.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
+import { Component } from &#x27;@angular/core&#x27;;
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { DataService } from &#x27;./data.service&#x27;;
+
+@Component({
+  selector: &#x27;app-cart&#x27;,
+  imports: [CommonModule, ReactiveFormsModule],
+  template: &#x60;
+    &lt;main class&#x3D;&quot;container py-5&quot;&gt;
+      &lt;div class&#x3D;&quot;section-heading&quot;&gt;&lt;span class&#x3D;&quot;eyebrow&quot;&gt;Compra&lt;/span&gt;&lt;h1&gt;Carrito y pago simulado&lt;/h1&gt;&lt;/div&gt;
+      &lt;div class&#x3D;&quot;row g-4&quot;&gt;
+        &lt;div class&#x3D;&quot;col-12 col-lg-7&quot;&gt;
+          &lt;div class&#x3D;&quot;panel&quot;&gt;
+            &lt;ng-container *ngIf&#x3D;&quot;data.cart.length; else emptyCart&quot;&gt;
+              &lt;div class&#x3D;&quot;cart-row&quot; *ngFor&#x3D;&quot;let item of data.cart&quot;&gt;
+                &lt;div&gt;&lt;strong&gt;{{ item.name }}&lt;/strong&gt;&lt;br&gt;&lt;span&gt;{{ data.format(item.price) }} c/u&lt;/span&gt;&lt;/div&gt;
+                &lt;div class&#x3D;&quot;btn-group&quot; role&#x3D;&quot;group&quot; aria-label&#x3D;&quot;Cantidad&quot;&gt;
+                  &lt;button class&#x3D;&quot;btn btn-outline-dark&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;data.changeQty(item.id, -1)&quot;&gt;-&lt;/button&gt;
+                  &lt;button class&#x3D;&quot;btn btn-outline-dark&quot; type&#x3D;&quot;button&quot; disabled&gt;{{ item.qty }}&lt;/button&gt;
+                  &lt;button class&#x3D;&quot;btn btn-outline-dark&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;data.changeQty(item.id, 1)&quot;&gt;+&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;strong&gt;{{ data.format(item.price * item.qty) }}&lt;/strong&gt;
+              &lt;/div&gt;
+            &lt;/ng-container&gt;
+            &lt;ng-template #emptyCart&gt;&lt;p class&#x3D;&quot;mb-0&quot;&gt;Tu carrito esta vacio. Agrega productos desde la tienda.&lt;/p&gt;&lt;/ng-template&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;col-12 col-lg-5&quot;&gt;
+          &lt;form class&#x3D;&quot;panel&quot; [formGroup]&#x3D;&quot;checkoutForm&quot; [class.was-validated]&#x3D;&quot;submitted&quot; novalidate (ngSubmit)&#x3D;&quot;checkout()&quot;&gt;
+            &lt;h3&gt;Datos de despacho&lt;/h3&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;shippingName&quot;&gt;Nombre receptor&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;shippingName&quot; formControlName&#x3D;&quot;name&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Ingresa al menos 3 caracteres.&lt;/div&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;shippingAddress&quot;&gt;Direccion (opcional)&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;shippingAddress&quot; formControlName&#x3D;&quot;address&quot;&gt;&lt;div class&#x3D;&quot;form-text&quot;&gt;Puedes coordinar el despacho despues de la compra.&lt;/div&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;shippingCity&quot;&gt;Comuna / ciudad&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;shippingCity&quot; formControlName&#x3D;&quot;city&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Campo obligatorio.&lt;/div&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;paymentMethod&quot;&gt;Metodo de pago&lt;/label&gt;&lt;select class&#x3D;&quot;form-select&quot; id&#x3D;&quot;paymentMethod&quot; formControlName&#x3D;&quot;payment&quot;&gt;&lt;option value&#x3D;&quot;&quot;&gt;Selecciona...&lt;/option&gt;&lt;option&gt;Transferencia simulada&lt;/option&gt;&lt;option&gt;Tarjeta simulada&lt;/option&gt;&lt;/select&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Selecciona un metodo.&lt;/div&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;total-line&quot;&gt;&lt;span&gt;Total&lt;/span&gt;&lt;strong&gt;{{ data.format(data.cartTotal) }}&lt;/strong&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;d-flex gap-2 mt-3&quot;&gt;&lt;button class&#x3D;&quot;btn btn-forest flex-fill&quot; type&#x3D;&quot;submit&quot;&gt;Confirmar pago simulado&lt;/button&gt;&lt;button class&#x3D;&quot;btn btn-outline-dark flex-fill&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;clear()&quot;&gt;Limpiar&lt;/button&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;alert alert-success mt-3&quot; *ngIf&#x3D;&quot;success&quot;&gt;Pago realizado con exito. Tu compra quedo registrada.&lt;/div&gt;
+            &lt;div class&#x3D;&quot;alert alert-danger mt-3&quot; *ngIf&#x3D;&quot;submitted &amp;&amp; data.cart.length &#x3D;&#x3D;&#x3D; 0&quot;&gt;Agrega productos antes de pagar.&lt;/div&gt;
+          &lt;/form&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/main&gt;
+  &#x60;
+})
+export class CartComponent {
+  checkoutForm: FormGroup;
+  submitted &#x3D; false;
+  success &#x3D; false;
+
+  constructor(public data: DataService, private router: Router, private fb: FormBuilder) {
+    this.checkoutForm &#x3D; this.fb.nonNullable.group({
+      name: [&#x27;&#x27;, [Validators.required, Validators.minLength(3)]],
+      address: [&#x27;&#x27;],
+      city: [&#x27;&#x27;, [Validators.required, Validators.minLength(3)]],
+      payment: [&#x27;&#x27;, Validators.required]
+    });
+  }
+
+  checkout(): void {
+    this.submitted &#x3D; true;
+    this.success &#x3D; false;
+    if (this.checkoutForm.invalid || this.data.cart.length &#x3D;&#x3D;&#x3D; 0) return;
+    if (!this.data.session) {
+      this.router.navigateByUrl(&#x27;/login&#x27;);
+      return;
+    }
+    this.data.createOrder();
+    this.success &#x3D; true;
+    this.clear();
+  }
+
+  clear(): void {
+    this.submitted &#x3D; false;
+    this.checkoutForm.reset();
+  }
+}
+</code></pre>
+    </div>
+
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><main class="container py-5">  <div class="section-heading"><span class="eyebrow">Compra</span><h1>Carrito y pago simulado</h1></div>  <div class="row g-4">    <div class="col-12 col-lg-7">      <div class="panel">        <ng-container *ngIf="data.cart.length; else emptyCart">          <div class="cart-row" *ngFor="let item of data.cart">            <div><strong>{{ item.name }}</strong><br><span>{{ data.format(item.price) }} c/u</span></div>            <div class="btn-group" role="group" aria-label="Cantidad">              <button class="btn btn-outline-dark" type="button" (click)="data.changeQty(item.id, -1)">-</button>              <button class="btn btn-outline-dark" type="button" disabled>{{ item.qty }}</button>              <button class="btn btn-outline-dark" type="button" (click)="data.changeQty(item.id, 1)">+</button>            </div>            <strong>{{ data.format(item.price * item.qty) }}</strong>          </div>        </ng-container>        <ng-template #emptyCart><p class="mb-0">Tu carrito esta vacio. Agrega productos desde la tienda.</p></ng-template>      </div>    </div>    <div class="col-12 col-lg-5">      <form class="panel" [formGroup]="checkoutForm" [class.was-validated]="submitted" novalidate (ngSubmit)="checkout()">        <h3>Datos de despacho</h3>        <div class="mb-3"><label class="form-label" for="shippingName">Nombre receptor</label><input class="form-control" id="shippingName" formControlName="name"><div class="invalid-feedback">Ingresa al menos 3 caracteres.</div></div>        <div class="mb-3"><label class="form-label" for="shippingAddress">Direccion (opcional)</label><input class="form-control" id="shippingAddress" formControlName="address"><div class="form-text">Puedes coordinar el despacho despues de la compra.</div></div>        <div class="mb-3"><label class="form-label" for="shippingCity">Comuna / ciudad</label><input class="form-control" id="shippingCity" formControlName="city"><div class="invalid-feedback">Campo obligatorio.</div></div>        <div class="mb-3"><label class="form-label" for="paymentMethod">Metodo de pago</label><select class="form-select" id="paymentMethod" formControlName="payment"><option value="">Selecciona...</option><option>Transferencia simulada</option><option>Tarjeta simulada</option></select><div class="invalid-feedback">Selecciona un metodo.</div></div>        <div class="total-line"><span>Total</span><strong>{{ data.format(data.cartTotal) }}</strong></div>        <div class="d-flex gap-2 mt-3"><button class="btn btn-forest flex-fill" type="submit">Confirmar pago simulado</button><button class="btn btn-outline-dark flex-fill" type="button" (click)="clear()">Limpiar</button></div>        <div class="alert alert-success mt-3" *ngIf="success">Pago realizado con exito. Tu compra quedo registrada.</div>        <div class="alert alert-danger mt-3" *ngIf="submitted && data.cart.length === 0">Agrega productos antes de pagar.</div>      </form>    </div>  </div></main></div>'
+    var COMPONENTS = [{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'App', 'selector': 'app-root'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'ForgotComponent', 'selector': 'app-forgot'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'OrdersComponent', 'selector': 'app-orders'},{'name': 'ProductDetailComponent', 'selector': 'app-product-detail'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ShopComponent', 'selector': 'app-shop'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CartComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CartComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

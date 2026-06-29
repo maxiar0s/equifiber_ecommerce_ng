@@ -58,6 +58,10 @@ const adminUser: User = {
   horse: 'Operacion ecommerce'
 };
 
+/**
+ * Centraliza los datos simulados de Equi-Fiber en localStorage.
+ * Permite demostrar autenticacion por roles, carrito, inventario y compras sin backend real.
+ */
 @Injectable({ providedIn: 'root' })
 export class DataService {
   products = this.load<Product[]>('products', initialProducts);
@@ -87,6 +91,7 @@ export class DataService {
     return this.currency.format(value);
   }
 
+  /** Agrega un producto al carrito respetando el stock disponible. */
   addToCart(id: string): void {
     const product = this.products.find((item) => item.id === id);
     if (!product || product.stock === 0) return;
@@ -106,6 +111,7 @@ export class DataService {
     this.persistCart();
   }
 
+  /** Valida credenciales locales y redirige segun el rol del usuario. */
   login(email: string, password: string): boolean {
     const found = this.users.find((user) => user.email.toLowerCase() === email.toLowerCase() && user.password === password);
     if (!found) return false;
@@ -128,6 +134,7 @@ export class DataService {
     this.router.navigateByUrl('/inicio');
   }
 
+  /** Crea una orden con pago simulado, descuenta inventario y vacia el carrito. */
   createOrder(): void {
     if (!this.session || this.cart.length === 0) return;
     this.orders.unshift({

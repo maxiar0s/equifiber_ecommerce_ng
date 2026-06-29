@@ -6,7 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
+    "docs": "compodoc -p tsconfig.app.json -s -o documentation",
+    "docs:build": "compodoc -p tsconfig.app.json -o documentation"
   },
   "private": true,
   "packageManager": "npm@11.9.0",
@@ -26,6 +29,7 @@
     "@angular/build": "^21.2.0",
     "@angular/cli": "^21.2.0",
     "@angular/compiler-cli": "^21.2.0",
+    "@compodoc/compodoc": "^2.0.0",
     "@types/jasmine": "^5.1.13",
     "jasmine-core": "^5.13.0",
     "karma": "^6.4.4",

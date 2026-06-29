@@ -1,59 +1,84 @@
-# EquifiberAngular
+# Equi-Fiber Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.0.
+Aplicacion FrontEnd en Angular 21 para una tienda de snacks naturales para caballos. La solucion simula autenticacion, roles, mantenedores, carrito, compras y pago exitoso sin integrar medios de pago reales.
 
-## Development server
+## Requisitos Cubiertos
 
-To start a local development server, run:
+- Angular actual con componentes standalone y rutas.
+- Bootstrap 5 y grilla de 12 columnas con vistas responsivas para movil, tablet y escritorio.
+- Formularios reactivos en inicio de sesion, registro, recuperacion, perfil, carrito y administrador.
+- Validaciones de campos, correo, telefono, RUT, edad minima, stock y precios.
+- Contrasenas con longitud minima, longitud maxima, mayuscula, numero y confirmacion.
+- Roles: `admin`, `cliente` y `centro`.
+- Menu integrado con opciones segun sesion y rol.
+- Mantenedor de productos, inventario y usuarios para administrador.
+- Carrito de compras, ordenes del usuario y pago simulado exitoso.
+- Pruebas unitarias con Jasmine y Karma.
+- Documentacion generada con Compodoc.
 
-```bash
-ng serve
-```
+## Usuario Administrador
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Correo: `admin@equifiber.cl`
+- Contrasena: `Admin123!`
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+## Ejecutar Aplicacion
 
 ```bash
-ng build
+npm install
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Abrir `http://localhost:4200/`.
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Pruebas Unitarias
 
 ```bash
-ng test
+npm run test:ci
 ```
 
-## Running end-to-end tests
+El proyecto incluye 4 pruebas unitarias sobre registro y carrito:
 
-For end-to-end (e2e) testing, run:
+- Contrasenas distintas invalidan el formulario.
+- Edad menor a 13 anos invalida el registro.
+- Registro valido normaliza el correo y permite direccion opcional.
+- Checkout permite direccion opcional con carrito valido.
+
+## Documentacion
+
+Generar documentacion estatica:
 
 ```bash
-ng e2e
+npm run docs:build
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Levantar documentacion navegable:
 
-## Additional Resources
+```bash
+npm run docs
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Compodoc publica la documentacion en `http://localhost:8080/` y genera archivos en `documentation/`.
+
+## Build
+
+```bash
+npm run build
+```
+
+Los archivos compilados quedan en `dist/equifiber-angular/`.
+
+## Guion Sugerido Para El Video
+
+1. Ejecutar `npm start` y abrir la aplicacion.
+2. Mostrar responsividad cambiando entre escritorio, tablet y movil.
+3. Navegar por inicio, tienda, detalle de producto y carrito.
+4. Registrar un usuario y mostrar validaciones del formulario.
+5. Iniciar sesion como cliente, modificar perfil y revisar compras.
+6. Simular una compra desde el carrito.
+7. Iniciar sesion como administrador y mostrar mantenedor de productos/usuarios.
+8. Ejecutar `npm run test:ci` para mostrar Jasmine/Karma.
+9. Ejecutar `npm run docs` y abrir la documentacion Compodoc.
+
+## Entrega
+
+Comprimir el codigo fuente del proyecto en `.zip` o `.rar`. No es necesario incluir `node_modules`, `dist`, `coverage` ni `documentation`, porque se regeneran con los comandos anteriores.
