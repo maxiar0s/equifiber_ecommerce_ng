@@ -1,5 +1,5 @@
 import { FormBuilder } from '@angular/forms';
-import { DataService, User } from './data.service';
+import { DataService, User } from '../../services/data.service';
 import { RegisterComponent } from './register.component';
 
 describe('RegisterComponent', () => {

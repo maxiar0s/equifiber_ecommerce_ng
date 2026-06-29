@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { DataService, Product } from './data.service';
+import { DataService, Product } from '../../services/data.service';
 
 @Component({
   selector: 'app-product-detail',

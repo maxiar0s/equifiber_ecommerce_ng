@@ -43,6 +43,18 @@ El proyecto incluye 4 pruebas unitarias sobre registro y carrito:
 - Registro valido normaliza el correo y permite direccion opcional.
 - Checkout permite direccion opcional con carrito valido.
 
+Archivos de pruebas:
+
+- `src/app/pages/register/register.component.spec.ts`
+- `src/app/pages/cart/cart.component.spec.ts`
+
+## Estructura Del Proyecto
+
+- `src/app/pages/`: componentes de pantallas como inicio, tienda, carrito, registro, perfil y administrador.
+- `src/app/services/`: servicios compartidos, incluyendo `DataService` para datos simulados en localStorage.
+- `src/app/guards/`: guards de rutas para sesion y rol administrador.
+- `src/app/app.routes.ts`: definicion central de rutas de navegacion.
+
 ## Documentacion
 
 Generar documentacion estatica:

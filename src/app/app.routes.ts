@@ -1,15 +1,15 @@
 import { Routes } from '@angular/router';
-import { AdminComponent } from './admin.component';
-import { adminGuard, authGuard } from './auth.guard';
-import { CartComponent } from './cart.component';
-import { ForgotComponent } from './forgot.component';
-import { HomeComponent } from './home.component';
-import { LoginComponent } from './login.component';
-import { OrdersComponent } from './orders.component';
-import { ProductDetailComponent } from './product-detail.component';
-import { ProfileComponent } from './profile.component';
-import { RegisterComponent } from './register.component';
-import { ShopComponent } from './shop.component';
+import { adminGuard, authGuard } from './guards/auth.guard';
+import { AdminComponent } from './pages/admin/admin.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { ForgotComponent } from './pages/forgot/forgot.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { OrdersComponent } from './pages/orders/orders.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ShopComponent } from './pages/shop/shop.component';
 
 export const routes: Routes = [
   { path: 'inicio', component: HomeComponent },

@@ -1,7 +1,7 @@
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartComponent } from './cart.component';
-import { DataService } from './data.service';
+import { DataService } from '../../services/data.service';
 
 describe('CartComponent', () => {
   it('allows checkout data without a shipping address', () => {

@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { DataService } from './data.service';
+import { DataService } from '../services/data.service';
 
 /** Protege paginas internas que requieren una sesion iniciada. */
 export const authGuard: CanActivateFn = () => {

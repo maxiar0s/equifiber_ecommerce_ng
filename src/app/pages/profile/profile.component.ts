@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DataService, User } from './data.service';
+import { DataService, User } from '../../services/data.service';
 
 @Component({
   selector: 'app-profile',
