@@ -1,3 +1,5 @@
+/// <reference types="jasmine" />
+
 import { FormBuilder } from '@angular/forms';
 import { DataService, User } from '../../services/data.service';
 import { RegisterComponent } from './register.component';
