@@ -129,12 +129,27 @@
 <b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm install
 npm start</code></pre></div><p>Abrir <code>http://localhost:4200/</code>.</p>
 <h2>Pruebas Unitarias</h2>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm run test:ci</code></pre></div><p>El proyecto incluye 4 pruebas unitarias sobre registro y carrito:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm run test:ci</code></pre></div><p>El proyecto incluye 6 pruebas unitarias sobre registro, carrito y administracion:</p>
 <ul>
 <li>Contrasenas distintas invalidan el formulario.</li>
 <li>Edad menor a 13 anos invalida el registro.</li>
 <li>Registro valido normaliza el correo y permite direccion opcional.</li>
 <li>Checkout permite direccion opcional con carrito valido.</li>
+<li>Producto sin descripcion no se guarda en inventario.</li>
+<li>Producto valido se agrega al inventario.</li>
+</ul>
+<p>Archivos de pruebas:</p>
+<ul>
+<li><code>src/app/pages/register/register.component.spec.ts</code></li>
+<li><code>src/app/pages/cart/cart.component.spec.ts</code></li>
+<li><code>src/app/pages/admin/admin.component.spec.ts</code></li>
+</ul>
+<h2>Estructura Del Proyecto</h2>
+<ul>
+<li><code>src/app/pages/</code>: componentes de pantallas como inicio, tienda, carrito, registro, perfil y administrador.</li>
+<li><code>src/app/services/</code>: servicios compartidos, incluyendo <code>DataService</code> para datos simulados en localStorage.</li>
+<li><code>src/app/guards/</code>: guards de rutas para sesion y rol administrador.</li>
+<li><code>src/app/app.routes.ts</code>: definicion central de rutas de navegacion.</li>
 </ul>
 <h2>Documentacion</h2>
 <p>Generar documentacion estatica:</p>

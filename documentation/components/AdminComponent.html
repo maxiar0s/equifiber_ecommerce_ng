@@ -191,13 +191,15 @@
   &lt;div class&#x3D;&quot;section-heading&quot;&gt;&lt;span class&#x3D;&quot;eyebrow&quot;&gt;Administrador&lt;/span&gt;&lt;h1&gt;Mantenedores Equi-Fiber&lt;/h1&gt;&lt;p&gt;Gestion de productos, inventario, clientes y usuarios.&lt;/p&gt;&lt;/div&gt;
   &lt;div class&#x3D;&quot;row g-4&quot;&gt;
     &lt;div class&#x3D;&quot;col-12 col-xl-4&quot;&gt;
-      &lt;form class&#x3D;&quot;panel&quot; [formGroup]&#x3D;&quot;productForm&quot; [class.was-validated]&#x3D;&quot;submitted&quot; novalidate (ngSubmit)&#x3D;&quot;save()&quot;&gt;
+      &lt;form class&#x3D;&quot;panel&quot; [formGroup]&#x3D;&quot;productForm&quot; novalidate (ngSubmit)&#x3D;&quot;save()&quot;&gt;
         &lt;h3&gt;Producto&lt;/h3&gt;
-        &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;productName&quot;&gt;Nombre&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;productName&quot; formControlName&#x3D;&quot;name&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Minimo 4 caracteres.&lt;/div&gt;&lt;/div&gt;
-        &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;productPrice&quot;&gt;Precio CLP&lt;/label&gt;&lt;input type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;productPrice&quot; formControlName&#x3D;&quot;price&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Precio minimo $1.000.&lt;/div&gt;&lt;/div&gt;
-        &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;productStock&quot;&gt;Stock&lt;/label&gt;&lt;input type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;productStock&quot; formControlName&#x3D;&quot;stock&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Stock no puede ser negativo.&lt;/div&gt;&lt;/div&gt;
-        &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;productDesc&quot;&gt;Descripcion&lt;/label&gt;&lt;textarea class&#x3D;&quot;form-control&quot; id&#x3D;&quot;productDesc&quot; formControlName&#x3D;&quot;desc&quot;&gt;&lt;/textarea&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Describe el producto.&lt;/div&gt;&lt;/div&gt;
+        &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;productName&quot;&gt;Nombre&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;productName&quot; formControlName&#x3D;&quot;name&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;name&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;name&#x27;)&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Minimo 4 caracteres.&lt;/div&gt;&lt;/div&gt;
+        &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;productPrice&quot;&gt;Precio CLP&lt;/label&gt;&lt;input type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;productPrice&quot; formControlName&#x3D;&quot;price&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;price&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;price&#x27;)&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Precio minimo $1.000.&lt;/div&gt;&lt;/div&gt;
+        &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;productStock&quot;&gt;Stock&lt;/label&gt;&lt;input type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;productStock&quot; formControlName&#x3D;&quot;stock&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;stock&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;stock&#x27;)&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Stock no puede ser negativo.&lt;/div&gt;&lt;/div&gt;
+        &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;productDesc&quot;&gt;Descripcion&lt;/label&gt;&lt;textarea class&#x3D;&quot;form-control&quot; id&#x3D;&quot;productDesc&quot; formControlName&#x3D;&quot;desc&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;desc&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;desc&#x27;)&quot;&gt;&lt;/textarea&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Describe el producto con al menos 10 caracteres.&lt;/div&gt;&lt;/div&gt;
         &lt;div class&#x3D;&quot;d-flex gap-2&quot;&gt;&lt;button class&#x3D;&quot;btn btn-forest flex-fill&quot; type&#x3D;&quot;submit&quot;&gt;Guardar producto&lt;/button&gt;&lt;button class&#x3D;&quot;btn btn-outline-dark flex-fill&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;clear()&quot;&gt;Limpiar&lt;/button&gt;&lt;/div&gt;
+        &lt;div class&#x3D;&quot;alert alert-danger mt-3&quot; *ngIf&#x3D;&quot;submitted &amp;&amp; productForm.invalid&quot;&gt;Completa todos los campos requeridos antes de guardar.&lt;/div&gt;
+        &lt;div class&#x3D;&quot;alert alert-success mt-3&quot; *ngIf&#x3D;&quot;success&quot;&gt;Producto guardado correctamente.&lt;/div&gt;
       &lt;/form&gt;
     &lt;/div&gt;
     &lt;div class&#x3D;&quot;col-12 col-xl-8&quot;&gt;
@@ -283,6 +285,10 @@
                                 <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                 <a href="#submitted" >submitted</a>
                             </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#success" >success</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -312,11 +318,19 @@
                             </li>
                             <li>
                                 <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#invalid" >invalid</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#remove" >remove</a>
                             </li>
                             <li>
                                 <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#save" >save</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#valid" >valid</a>
                             </li>
                         </ul>
                     </td>
@@ -341,7 +355,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/pages/admin/admin.component.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/pages/admin/admin.component.ts:47</a></div>
                             </td>
                         </tr>
 
@@ -420,8 +434,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="80"
-                                    class="link-to-prism">src/app/pages/admin/admin.component.ts:80</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="88"
+                                    class="link-to-prism">src/app/pages/admin/admin.component.ts:88</a></div>
                         </td>
                     </tr>
 
@@ -457,8 +471,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="55"
-                                    class="link-to-prism">src/app/pages/admin/admin.component.ts:55</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/app/pages/admin/admin.component.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -526,8 +540,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="86"
-                                    class="link-to-prism">src/app/pages/admin/admin.component.ts:86</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/app/pages/admin/admin.component.ts:105</a></div>
                         </td>
                     </tr>
 
@@ -539,6 +553,73 @@
                             <b>Returns : </b>        <code><a href="../interfaces/Product.html" target="_self" >Product</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="invalid"></a>
+                    <span class="name">
+                        <span ><b>invalid</b></span>
+                        <a href="#invalid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>invalid(controlName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/pages/admin/admin.component.ts:95</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>controlName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -563,8 +644,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="61"
-                                    class="link-to-prism">src/app/pages/admin/admin.component.ts:61</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/pages/admin/admin.component.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -630,8 +711,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="68"
-                                    class="link-to-prism">src/app/pages/admin/admin.component.ts:68</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/app/pages/admin/admin.component.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -643,6 +724,73 @@
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="valid"></a>
+                    <span class="name">
+                        <span ><b>valid</b></span>
+                        <a href="#valid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>valid(controlName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/pages/admin/admin.component.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>controlName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -674,7 +822,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/pages/admin/admin.component.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/pages/admin/admin.component.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -705,7 +853,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/pages/admin/admin.component.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/pages/admin/admin.component.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -731,7 +879,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/pages/admin/admin.component.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/pages/admin/admin.component.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -762,7 +910,38 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/pages/admin/admin.component.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/pages/admin/admin.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="success"></a>
+                    <span class="name">
+                        <span ><b>success</b></span>
+                        <a href="#success"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/pages/admin/admin.component.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -788,13 +967,15 @@ import { DataService, Product } from &#x27;../../services/data.service&#x27;;
       &lt;div class&#x3D;&quot;section-heading&quot;&gt;&lt;span class&#x3D;&quot;eyebrow&quot;&gt;Administrador&lt;/span&gt;&lt;h1&gt;Mantenedores Equi-Fiber&lt;/h1&gt;&lt;p&gt;Gestion de productos, inventario, clientes y usuarios.&lt;/p&gt;&lt;/div&gt;
       &lt;div class&#x3D;&quot;row g-4&quot;&gt;
         &lt;div class&#x3D;&quot;col-12 col-xl-4&quot;&gt;
-          &lt;form class&#x3D;&quot;panel&quot; [formGroup]&#x3D;&quot;productForm&quot; [class.was-validated]&#x3D;&quot;submitted&quot; novalidate (ngSubmit)&#x3D;&quot;save()&quot;&gt;
+          &lt;form class&#x3D;&quot;panel&quot; [formGroup]&#x3D;&quot;productForm&quot; novalidate (ngSubmit)&#x3D;&quot;save()&quot;&gt;
             &lt;h3&gt;Producto&lt;/h3&gt;
-            &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;productName&quot;&gt;Nombre&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;productName&quot; formControlName&#x3D;&quot;name&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Minimo 4 caracteres.&lt;/div&gt;&lt;/div&gt;
-            &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;productPrice&quot;&gt;Precio CLP&lt;/label&gt;&lt;input type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;productPrice&quot; formControlName&#x3D;&quot;price&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Precio minimo $1.000.&lt;/div&gt;&lt;/div&gt;
-            &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;productStock&quot;&gt;Stock&lt;/label&gt;&lt;input type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;productStock&quot; formControlName&#x3D;&quot;stock&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Stock no puede ser negativo.&lt;/div&gt;&lt;/div&gt;
-            &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;productDesc&quot;&gt;Descripcion&lt;/label&gt;&lt;textarea class&#x3D;&quot;form-control&quot; id&#x3D;&quot;productDesc&quot; formControlName&#x3D;&quot;desc&quot;&gt;&lt;/textarea&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Describe el producto.&lt;/div&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;productName&quot;&gt;Nombre&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;productName&quot; formControlName&#x3D;&quot;name&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;name&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;name&#x27;)&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Minimo 4 caracteres.&lt;/div&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;productPrice&quot;&gt;Precio CLP&lt;/label&gt;&lt;input type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;productPrice&quot; formControlName&#x3D;&quot;price&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;price&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;price&#x27;)&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Precio minimo $1.000.&lt;/div&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;productStock&quot;&gt;Stock&lt;/label&gt;&lt;input type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;productStock&quot; formControlName&#x3D;&quot;stock&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;stock&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;stock&#x27;)&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Stock no puede ser negativo.&lt;/div&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;productDesc&quot;&gt;Descripcion&lt;/label&gt;&lt;textarea class&#x3D;&quot;form-control&quot; id&#x3D;&quot;productDesc&quot; formControlName&#x3D;&quot;desc&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;desc&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;desc&#x27;)&quot;&gt;&lt;/textarea&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Describe el producto con al menos 10 caracteres.&lt;/div&gt;&lt;/div&gt;
             &lt;div class&#x3D;&quot;d-flex gap-2&quot;&gt;&lt;button class&#x3D;&quot;btn btn-forest flex-fill&quot; type&#x3D;&quot;submit&quot;&gt;Guardar producto&lt;/button&gt;&lt;button class&#x3D;&quot;btn btn-outline-dark flex-fill&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;clear()&quot;&gt;Limpiar&lt;/button&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;alert alert-danger mt-3&quot; *ngIf&#x3D;&quot;submitted &amp;&amp; productForm.invalid&quot;&gt;Completa todos los campos requeridos antes de guardar.&lt;/div&gt;
+            &lt;div class&#x3D;&quot;alert alert-success mt-3&quot; *ngIf&#x3D;&quot;success&quot;&gt;Producto guardado correctamente.&lt;/div&gt;
           &lt;/form&gt;
         &lt;/div&gt;
         &lt;div class&#x3D;&quot;col-12 col-xl-8&quot;&gt;
@@ -819,6 +1000,7 @@ export class AdminComponent {
   draft: Product &#x3D; this.emptyProduct();
   productForm: FormGroup;
   submitted &#x3D; false;
+  success &#x3D; false;
 
   constructor(public data: DataService, private fb: FormBuilder) {
     this.productForm &#x3D; this.fb.nonNullable.group({
@@ -832,6 +1014,7 @@ export class AdminComponent {
   edit(product: Product): void {
     this.draft &#x3D; { ...product };
     this.submitted &#x3D; false;
+    this.success &#x3D; false;
     this.productForm.reset({ name: product.name, price: product.price, stock: product.stock, desc: product.desc });
   }
 
@@ -844,6 +1027,7 @@ export class AdminComponent {
 
   save(): void {
     this.submitted &#x3D; true;
+    this.success &#x3D; false;
     if (this.productForm.invalid) return;
     const value &#x3D; this.productForm.getRawValue();
     const product &#x3D; { ...value, id: this.draft.id || &#x60;prod-${Date.now()}&#x60;, price: Number(value.price), stock: Number(value.stock) };
@@ -851,13 +1035,27 @@ export class AdminComponent {
     if (index &gt;&#x3D; 0) this.data.products[index] &#x3D; product;
     else this.data.products.push(product);
     this.data.persistProducts();
-    this.clear();
+    this.success &#x3D; true;
+    this.submitted &#x3D; false;
+    this.draft &#x3D; this.emptyProduct();
+    this.productForm.reset({ name: &#x27;&#x27;, price: 1000, stock: 0, desc: &#x27;&#x27; });
   }
 
   clear(): void {
     this.submitted &#x3D; false;
+    this.success &#x3D; false;
     this.draft &#x3D; this.emptyProduct();
     this.productForm.reset({ name: &#x27;&#x27;, price: 1000, stock: 0, desc: &#x27;&#x27; });
+  }
+
+  invalid(controlName: string): boolean {
+    const control &#x3D; this.productForm.get(controlName);
+    return !!control &amp;&amp; this.submitted &amp;&amp; control.invalid;
+  }
+
+  valid(controlName: string): boolean {
+    const control &#x3D; this.productForm.get(controlName);
+    return !!control &amp;&amp; this.submitted &amp;&amp; control.valid;
   }
 
   private emptyProduct(): Product {
@@ -894,7 +1092,7 @@ export class AdminComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><main class="container py-5">  <div class="section-heading"><span class="eyebrow">Administrador</span><h1>Mantenedores Equi-Fiber</h1><p>Gestion de productos, inventario, clientes y usuarios.</p></div>  <div class="row g-4">    <div class="col-12 col-xl-4">      <form class="panel" [formGroup]="productForm" [class.was-validated]="submitted" novalidate (ngSubmit)="save()">        <h3>Producto</h3>        <div class="mb-3"><label class="form-label" for="productName">Nombre</label><input class="form-control" id="productName" formControlName="name"><div class="invalid-feedback">Minimo 4 caracteres.</div></div>        <div class="mb-3"><label class="form-label" for="productPrice">Precio CLP</label><input type="number" class="form-control" id="productPrice" formControlName="price"><div class="invalid-feedback">Precio minimo $1.000.</div></div>        <div class="mb-3"><label class="form-label" for="productStock">Stock</label><input type="number" class="form-control" id="productStock" formControlName="stock"><div class="invalid-feedback">Stock no puede ser negativo.</div></div>        <div class="mb-3"><label class="form-label" for="productDesc">Descripcion</label><textarea class="form-control" id="productDesc" formControlName="desc"></textarea><div class="invalid-feedback">Describe el producto.</div></div>        <div class="d-flex gap-2"><button class="btn btn-forest flex-fill" type="submit">Guardar producto</button><button class="btn btn-outline-dark flex-fill" type="button" (click)="clear()">Limpiar</button></div>      </form>    </div>    <div class="col-12 col-xl-8">      <div class="panel table-responsive">        <h3>Productos e inventario</h3>        <table class="table align-middle"><thead><tr><th>Producto</th><th>Precio</th><th>Stock</th><th>Acciones</th></tr></thead><tbody>          <tr *ngFor="let product of data.products"><td>{{ product.name }}</td><td>{{ data.format(product.price) }}</td><td>{{ product.stock }}</td><td><button class="btn btn-sm btn-outline-dark" type="button" (click)="edit(product)">Editar</button> <button class="btn btn-sm btn-outline-danger" type="button" (click)="remove(product.id)">Eliminar</button></td></tr>        </tbody></table>      </div>      <div class="panel table-responsive mt-4">        <h3>Usuarios registrados</h3>        <table class="table align-middle"><thead><tr><th>Nombre</th><th>Correo</th><th>Rol</th><th>Telefono</th></tr></thead><tbody>          <tr *ngFor="let user of data.users"><td>{{ user.name }}</td><td>{{ user.email }}</td><td>{{ user.role }}</td><td>{{ user.phone }}</td></tr>        </tbody></table>      </div>    </div>  </div></main></div>'
+        var COMPONENT_TEMPLATE = '<div><main class="container py-5">  <div class="section-heading"><span class="eyebrow">Administrador</span><h1>Mantenedores Equi-Fiber</h1><p>Gestion de productos, inventario, clientes y usuarios.</p></div>  <div class="row g-4">    <div class="col-12 col-xl-4">      <form class="panel" [formGroup]="productForm" novalidate (ngSubmit)="save()">        <h3>Producto</h3>        <div class="mb-3"><label class="form-label" for="productName">Nombre</label><input class="form-control" id="productName" formControlName="name" [class.is-invalid]="invalid(\'name\')" [class.is-valid]="valid(\'name\')"><div class="invalid-feedback">Minimo 4 caracteres.</div></div>        <div class="mb-3"><label class="form-label" for="productPrice">Precio CLP</label><input type="number" class="form-control" id="productPrice" formControlName="price" [class.is-invalid]="invalid(\'price\')" [class.is-valid]="valid(\'price\')"><div class="invalid-feedback">Precio minimo $1.000.</div></div>        <div class="mb-3"><label class="form-label" for="productStock">Stock</label><input type="number" class="form-control" id="productStock" formControlName="stock" [class.is-invalid]="invalid(\'stock\')" [class.is-valid]="valid(\'stock\')"><div class="invalid-feedback">Stock no puede ser negativo.</div></div>        <div class="mb-3"><label class="form-label" for="productDesc">Descripcion</label><textarea class="form-control" id="productDesc" formControlName="desc" [class.is-invalid]="invalid(\'desc\')" [class.is-valid]="valid(\'desc\')"></textarea><div class="invalid-feedback">Describe el producto con al menos 10 caracteres.</div></div>        <div class="d-flex gap-2"><button class="btn btn-forest flex-fill" type="submit">Guardar producto</button><button class="btn btn-outline-dark flex-fill" type="button" (click)="clear()">Limpiar</button></div>        <div class="alert alert-danger mt-3" *ngIf="submitted && productForm.invalid">Completa todos los campos requeridos antes de guardar.</div>        <div class="alert alert-success mt-3" *ngIf="success">Producto guardado correctamente.</div>      </form>    </div>    <div class="col-12 col-xl-8">      <div class="panel table-responsive">        <h3>Productos e inventario</h3>        <table class="table align-middle"><thead><tr><th>Producto</th><th>Precio</th><th>Stock</th><th>Acciones</th></tr></thead><tbody>          <tr *ngFor="let product of data.products"><td>{{ product.name }}</td><td>{{ data.format(product.price) }}</td><td>{{ product.stock }}</td><td><button class="btn btn-sm btn-outline-dark" type="button" (click)="edit(product)">Editar</button> <button class="btn btn-sm btn-outline-danger" type="button" (click)="remove(product.id)">Eliminar</button></td></tr>        </tbody></table>      </div>      <div class="panel table-responsive mt-4">        <h3>Usuarios registrados</h3>        <table class="table align-middle"><thead><tr><th>Nombre</th><th>Correo</th><th>Rol</th><th>Telefono</th></tr></thead><tbody>          <tr *ngFor="let user of data.users"><td>{{ user.name }}</td><td>{{ user.email }}</td><td>{{ user.role }}</td><td>{{ user.phone }}</td></tr>        </tbody></table>      </div>    </div>  </div></main></div>'
     var COMPONENTS = [{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'App', 'selector': 'app-root'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'ForgotComponent', 'selector': 'app-forgot'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'OrdersComponent', 'selector': 'app-orders'},{'name': 'ProductDetailComponent', 'selector': 'app-product-detail'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ShopComponent', 'selector': 'app-shop'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AdminComponent'};

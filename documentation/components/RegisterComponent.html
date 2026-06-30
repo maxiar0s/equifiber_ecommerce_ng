@@ -190,21 +190,22 @@
             <tr>
                 <td class="col-md-3">template</td>
                 <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;main class&#x3D;&quot;auth-page&quot;&gt;
-  &lt;form class&#x3D;&quot;auth-card&quot; [formGroup]&#x3D;&quot;registerForm&quot; [class.was-validated]&#x3D;&quot;submitted&quot; novalidate (ngSubmit)&#x3D;&quot;register()&quot;&gt;
+  &lt;form class&#x3D;&quot;auth-card&quot; [formGroup]&#x3D;&quot;registerForm&quot; novalidate (ngSubmit)&#x3D;&quot;register()&quot;&gt;
     &lt;span class&#x3D;&quot;eyebrow&quot;&gt;Nueva cuenta&lt;/span&gt;&lt;h1&gt;Registro de usuario&lt;/h1&gt;
     &lt;div class&#x3D;&quot;row g-3&quot;&gt;
-      &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regName&quot;&gt;Nombre&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regName&quot; formControlName&#x3D;&quot;name&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Solo letras, minimo 3 caracteres.&lt;/div&gt;&lt;/div&gt;
-      &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regRut&quot;&gt;RUT&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regRut&quot; formControlName&#x3D;&quot;rut&quot; placeholder&#x3D;&quot;12345678-9&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Formato valido: 12345678-9.&lt;/div&gt;&lt;/div&gt;
-      &lt;div class&#x3D;&quot;col-12&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regEmail&quot;&gt;Correo&lt;/label&gt;&lt;input type&#x3D;&quot;email&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regEmail&quot; formControlName&#x3D;&quot;email&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Ingresa un correo valido.&lt;/div&gt;&lt;/div&gt;
-      &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regPhone&quot;&gt;Telefono&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regPhone&quot; formControlName&#x3D;&quot;phone&quot; placeholder&#x3D;&quot;+56 9 1234 5678&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Ingresa un telefono chileno valido.&lt;/div&gt;&lt;/div&gt;
-      &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regBirthDate&quot;&gt;Fecha de nacimiento&lt;/label&gt;&lt;input type&#x3D;&quot;date&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regBirthDate&quot; formControlName&#x3D;&quot;birthDate&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Debes tener al menos 13 anos.&lt;/div&gt;&lt;/div&gt;
-      &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regRole&quot;&gt;Tipo de usuario&lt;/label&gt;&lt;select class&#x3D;&quot;form-select&quot; id&#x3D;&quot;regRole&quot; formControlName&#x3D;&quot;role&quot;&gt;&lt;option value&#x3D;&quot;&quot;&gt;Selecciona...&lt;/option&gt;&lt;option value&#x3D;&quot;cliente&quot;&gt;Cliente&lt;/option&gt;&lt;option value&#x3D;&quot;centro&quot;&gt;Centro ecuestre&lt;/option&gt;&lt;/select&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Selecciona un tipo.&lt;/div&gt;&lt;/div&gt;
+      &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regName&quot;&gt;Nombre&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regName&quot; formControlName&#x3D;&quot;name&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;name&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;name&#x27;)&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Solo letras, minimo 3 caracteres.&lt;/div&gt;&lt;/div&gt;
+      &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regRut&quot;&gt;RUT&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regRut&quot; formControlName&#x3D;&quot;rut&quot; placeholder&#x3D;&quot;12345678-9&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;rut&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;rut&#x27;)&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Formato valido: 12345678-9, sin puntos.&lt;/div&gt;&lt;/div&gt;
+      &lt;div class&#x3D;&quot;col-12&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regEmail&quot;&gt;Correo&lt;/label&gt;&lt;input type&#x3D;&quot;email&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regEmail&quot; formControlName&#x3D;&quot;email&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;email&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;email&#x27;)&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Ingresa un correo valido.&lt;/div&gt;&lt;/div&gt;
+      &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regPhone&quot;&gt;Telefono&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regPhone&quot; formControlName&#x3D;&quot;phone&quot; placeholder&#x3D;&quot;+56 9 1234 5678&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;phone&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;phone&#x27;)&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Ingresa un telefono chileno valido.&lt;/div&gt;&lt;/div&gt;
+      &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regBirthDate&quot;&gt;Fecha de nacimiento&lt;/label&gt;&lt;input type&#x3D;&quot;date&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regBirthDate&quot; formControlName&#x3D;&quot;birthDate&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;birthDate&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;birthDate&#x27;)&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Debes tener al menos 13 anos.&lt;/div&gt;&lt;/div&gt;
+      &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regRole&quot;&gt;Tipo de usuario&lt;/label&gt;&lt;select class&#x3D;&quot;form-select&quot; id&#x3D;&quot;regRole&quot; formControlName&#x3D;&quot;role&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;role&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;role&#x27;)&quot;&gt;&lt;option value&#x3D;&quot;&quot;&gt;Selecciona...&lt;/option&gt;&lt;option value&#x3D;&quot;cliente&quot;&gt;Cliente&lt;/option&gt;&lt;option value&#x3D;&quot;centro&quot;&gt;Centro ecuestre&lt;/option&gt;&lt;/select&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Selecciona un tipo.&lt;/div&gt;&lt;/div&gt;
       &lt;div class&#x3D;&quot;col-12&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regAddress&quot;&gt;Direccion de despacho (opcional)&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regAddress&quot; formControlName&#x3D;&quot;address&quot;&gt;&lt;div class&#x3D;&quot;form-text&quot;&gt;Puedes completarla mas adelante.&lt;/div&gt;&lt;/div&gt;
-      &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regPassword&quot;&gt;Contrasena&lt;/label&gt;&lt;input type&#x3D;&quot;password&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regPassword&quot; formControlName&#x3D;&quot;password&quot;&gt;&lt;div class&#x3D;&quot;form-text&quot;&gt;Debe tener 6 a 18 caracteres, una mayuscula y un numero.&lt;/div&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;La contrasena no cumple las reglas de seguridad.&lt;/div&gt;&lt;/div&gt;
-      &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regConfirmPassword&quot;&gt;Repetir contrasena&lt;/label&gt;&lt;input type&#x3D;&quot;password&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regConfirmPassword&quot; formControlName&#x3D;&quot;confirmPassword&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Las contrasenas deben ser iguales.&lt;/div&gt;&lt;/div&gt;
+      &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regPassword&quot;&gt;Contrasena&lt;/label&gt;&lt;input type&#x3D;&quot;password&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regPassword&quot; formControlName&#x3D;&quot;password&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;password&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;password&#x27;)&quot;&gt;&lt;div class&#x3D;&quot;form-text&quot;&gt;Debe tener 6 a 18 caracteres, una mayuscula y un numero.&lt;/div&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;La contrasena no cumple las reglas de seguridad.&lt;/div&gt;&lt;/div&gt;
+      &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regConfirmPassword&quot;&gt;Repetir contrasena&lt;/label&gt;&lt;input type&#x3D;&quot;password&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regConfirmPassword&quot; formControlName&#x3D;&quot;confirmPassword&quot; [class.is-invalid]&#x3D;&quot;confirmPasswordInvalid()&quot; [class.is-valid]&#x3D;&quot;confirmPasswordValid()&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Las contrasenas deben ser iguales.&lt;/div&gt;&lt;/div&gt;
     &lt;/div&gt;
     &lt;div class&#x3D;&quot;d-flex gap-2 mt-4&quot;&gt;&lt;button class&#x3D;&quot;btn btn-forest flex-fill&quot; type&#x3D;&quot;submit&quot;&gt;Crear cuenta&lt;/button&gt;&lt;button class&#x3D;&quot;btn btn-outline-dark flex-fill&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;clear()&quot;&gt;Limpiar&lt;/button&gt;&lt;/div&gt;
     &lt;a class&#x3D;&quot;d-inline-block mt-3&quot; routerLink&#x3D;&quot;/login&quot;&gt;Ya tengo cuenta&lt;/a&gt;
+    &lt;div class&#x3D;&quot;alert alert-danger mt-3&quot; *ngIf&#x3D;&quot;submitted &amp;&amp; registerForm.invalid&quot;&gt;Revisa los campos marcados antes de crear la cuenta.&lt;/div&gt;
     &lt;div class&#x3D;&quot;alert alert-success mt-3&quot; *ngIf&#x3D;&quot;success&quot;&gt;Cuenta creada. Ahora puedes iniciar sesion.&lt;/div&gt;
     &lt;div class&#x3D;&quot;alert alert-danger mt-3&quot; *ngIf&#x3D;&quot;duplicate&quot;&gt;Correo ya registrado.&lt;/div&gt;
   &lt;/form&gt;
@@ -298,6 +299,18 @@
                             </li>
                             <li>
                                 <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#confirmPasswordInvalid" >confirmPasswordInvalid</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#confirmPasswordValid" >confirmPasswordValid</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#invalid" >invalid</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Private</span>
                                 <a href="#minimumAgeValidator" >minimumAgeValidator</a>
                             </li>
@@ -309,6 +322,10 @@
                                 <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Private</span>
                                 <a href="#samePasswordsValidator" >samePasswordsValidator</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#valid" >valid</a>
                             </li>
                         </ul>
                     </td>
@@ -333,7 +350,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/register/register.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/register/register.component.ts:38</a></div>
                             </td>
                         </tr>
 
@@ -412,8 +429,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="77"
-                                    class="link-to-prism">src/app/pages/register/register.component.ts:77</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/app/pages/register/register.component.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -425,6 +442,147 @@
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmPasswordInvalid"></a>
+                    <span class="name">
+                        <span ><b>confirmPasswordInvalid</b></span>
+                        <a href="#confirmPasswordInvalid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>confirmPasswordInvalid()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/pages/register/register.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmPasswordValid"></a>
+                    <span class="name">
+                        <span ><b>confirmPasswordValid</b></span>
+                        <a href="#confirmPasswordValid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>confirmPasswordValid()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="98"
+                                    class="link-to-prism">src/app/pages/register/register.component.ts:98</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="invalid"></a>
+                    <span class="name">
+                        <span ><b>invalid</b></span>
+                        <a href="#invalid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>invalid(controlName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/app/pages/register/register.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>controlName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -451,8 +609,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="88"
-                                    class="link-to-prism">src/app/pages/register/register.component.ts:88</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="109"
+                                    class="link-to-prism">src/app/pages/register/register.component.ts:109</a></div>
                         </td>
                     </tr>
 
@@ -518,8 +676,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="53"
-                                    class="link-to-prism">src/app/pages/register/register.component.ts:53</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/pages/register/register.component.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -557,8 +715,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="82"
-                                    class="link-to-prism">src/app/pages/register/register.component.ts:82</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/pages/register/register.component.ts:103</a></div>
                         </td>
                     </tr>
 
@@ -604,6 +762,73 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="valid"></a>
+                    <span class="name">
+                        <span ><b>valid</b></span>
+                        <a href="#valid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>valid(controlName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="88"
+                                    class="link-to-prism">src/app/pages/register/register.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>controlName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     <section data-compodoc="block-properties">
@@ -635,7 +860,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/register/register.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/register/register.component.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -661,7 +886,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/register/register.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/register/register.component.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -692,7 +917,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/register/register.component.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/register/register.component.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -723,7 +948,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/register/register.component.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/register/register.component.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -747,21 +972,22 @@ import { DataService, User } from &#x27;../../services/data.service&#x27;;
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
   template: &#x60;
     &lt;main class&#x3D;&quot;auth-page&quot;&gt;
-      &lt;form class&#x3D;&quot;auth-card&quot; [formGroup]&#x3D;&quot;registerForm&quot; [class.was-validated]&#x3D;&quot;submitted&quot; novalidate (ngSubmit)&#x3D;&quot;register()&quot;&gt;
+      &lt;form class&#x3D;&quot;auth-card&quot; [formGroup]&#x3D;&quot;registerForm&quot; novalidate (ngSubmit)&#x3D;&quot;register()&quot;&gt;
         &lt;span class&#x3D;&quot;eyebrow&quot;&gt;Nueva cuenta&lt;/span&gt;&lt;h1&gt;Registro de usuario&lt;/h1&gt;
         &lt;div class&#x3D;&quot;row g-3&quot;&gt;
-          &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regName&quot;&gt;Nombre&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regName&quot; formControlName&#x3D;&quot;name&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Solo letras, minimo 3 caracteres.&lt;/div&gt;&lt;/div&gt;
-          &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regRut&quot;&gt;RUT&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regRut&quot; formControlName&#x3D;&quot;rut&quot; placeholder&#x3D;&quot;12345678-9&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Formato valido: 12345678-9.&lt;/div&gt;&lt;/div&gt;
-          &lt;div class&#x3D;&quot;col-12&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regEmail&quot;&gt;Correo&lt;/label&gt;&lt;input type&#x3D;&quot;email&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regEmail&quot; formControlName&#x3D;&quot;email&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Ingresa un correo valido.&lt;/div&gt;&lt;/div&gt;
-          &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regPhone&quot;&gt;Telefono&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regPhone&quot; formControlName&#x3D;&quot;phone&quot; placeholder&#x3D;&quot;+56 9 1234 5678&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Ingresa un telefono chileno valido.&lt;/div&gt;&lt;/div&gt;
-          &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regBirthDate&quot;&gt;Fecha de nacimiento&lt;/label&gt;&lt;input type&#x3D;&quot;date&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regBirthDate&quot; formControlName&#x3D;&quot;birthDate&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Debes tener al menos 13 anos.&lt;/div&gt;&lt;/div&gt;
-          &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regRole&quot;&gt;Tipo de usuario&lt;/label&gt;&lt;select class&#x3D;&quot;form-select&quot; id&#x3D;&quot;regRole&quot; formControlName&#x3D;&quot;role&quot;&gt;&lt;option value&#x3D;&quot;&quot;&gt;Selecciona...&lt;/option&gt;&lt;option value&#x3D;&quot;cliente&quot;&gt;Cliente&lt;/option&gt;&lt;option value&#x3D;&quot;centro&quot;&gt;Centro ecuestre&lt;/option&gt;&lt;/select&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Selecciona un tipo.&lt;/div&gt;&lt;/div&gt;
+          &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regName&quot;&gt;Nombre&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regName&quot; formControlName&#x3D;&quot;name&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;name&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;name&#x27;)&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Solo letras, minimo 3 caracteres.&lt;/div&gt;&lt;/div&gt;
+          &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regRut&quot;&gt;RUT&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regRut&quot; formControlName&#x3D;&quot;rut&quot; placeholder&#x3D;&quot;12345678-9&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;rut&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;rut&#x27;)&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Formato valido: 12345678-9, sin puntos.&lt;/div&gt;&lt;/div&gt;
+          &lt;div class&#x3D;&quot;col-12&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regEmail&quot;&gt;Correo&lt;/label&gt;&lt;input type&#x3D;&quot;email&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regEmail&quot; formControlName&#x3D;&quot;email&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;email&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;email&#x27;)&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Ingresa un correo valido.&lt;/div&gt;&lt;/div&gt;
+          &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regPhone&quot;&gt;Telefono&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regPhone&quot; formControlName&#x3D;&quot;phone&quot; placeholder&#x3D;&quot;+56 9 1234 5678&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;phone&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;phone&#x27;)&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Ingresa un telefono chileno valido.&lt;/div&gt;&lt;/div&gt;
+          &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regBirthDate&quot;&gt;Fecha de nacimiento&lt;/label&gt;&lt;input type&#x3D;&quot;date&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regBirthDate&quot; formControlName&#x3D;&quot;birthDate&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;birthDate&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;birthDate&#x27;)&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Debes tener al menos 13 anos.&lt;/div&gt;&lt;/div&gt;
+          &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regRole&quot;&gt;Tipo de usuario&lt;/label&gt;&lt;select class&#x3D;&quot;form-select&quot; id&#x3D;&quot;regRole&quot; formControlName&#x3D;&quot;role&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;role&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;role&#x27;)&quot;&gt;&lt;option value&#x3D;&quot;&quot;&gt;Selecciona...&lt;/option&gt;&lt;option value&#x3D;&quot;cliente&quot;&gt;Cliente&lt;/option&gt;&lt;option value&#x3D;&quot;centro&quot;&gt;Centro ecuestre&lt;/option&gt;&lt;/select&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Selecciona un tipo.&lt;/div&gt;&lt;/div&gt;
           &lt;div class&#x3D;&quot;col-12&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regAddress&quot;&gt;Direccion de despacho (opcional)&lt;/label&gt;&lt;input class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regAddress&quot; formControlName&#x3D;&quot;address&quot;&gt;&lt;div class&#x3D;&quot;form-text&quot;&gt;Puedes completarla mas adelante.&lt;/div&gt;&lt;/div&gt;
-          &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regPassword&quot;&gt;Contrasena&lt;/label&gt;&lt;input type&#x3D;&quot;password&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regPassword&quot; formControlName&#x3D;&quot;password&quot;&gt;&lt;div class&#x3D;&quot;form-text&quot;&gt;Debe tener 6 a 18 caracteres, una mayuscula y un numero.&lt;/div&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;La contrasena no cumple las reglas de seguridad.&lt;/div&gt;&lt;/div&gt;
-          &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regConfirmPassword&quot;&gt;Repetir contrasena&lt;/label&gt;&lt;input type&#x3D;&quot;password&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regConfirmPassword&quot; formControlName&#x3D;&quot;confirmPassword&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Las contrasenas deben ser iguales.&lt;/div&gt;&lt;/div&gt;
+          &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regPassword&quot;&gt;Contrasena&lt;/label&gt;&lt;input type&#x3D;&quot;password&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regPassword&quot; formControlName&#x3D;&quot;password&quot; [class.is-invalid]&#x3D;&quot;invalid(&#x27;password&#x27;)&quot; [class.is-valid]&#x3D;&quot;valid(&#x27;password&#x27;)&quot;&gt;&lt;div class&#x3D;&quot;form-text&quot;&gt;Debe tener 6 a 18 caracteres, una mayuscula y un numero.&lt;/div&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;La contrasena no cumple las reglas de seguridad.&lt;/div&gt;&lt;/div&gt;
+          &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;&lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;regConfirmPassword&quot;&gt;Repetir contrasena&lt;/label&gt;&lt;input type&#x3D;&quot;password&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;regConfirmPassword&quot; formControlName&#x3D;&quot;confirmPassword&quot; [class.is-invalid]&#x3D;&quot;confirmPasswordInvalid()&quot; [class.is-valid]&#x3D;&quot;confirmPasswordValid()&quot;&gt;&lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Las contrasenas deben ser iguales.&lt;/div&gt;&lt;/div&gt;
         &lt;/div&gt;
         &lt;div class&#x3D;&quot;d-flex gap-2 mt-4&quot;&gt;&lt;button class&#x3D;&quot;btn btn-forest flex-fill&quot; type&#x3D;&quot;submit&quot;&gt;Crear cuenta&lt;/button&gt;&lt;button class&#x3D;&quot;btn btn-outline-dark flex-fill&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;clear()&quot;&gt;Limpiar&lt;/button&gt;&lt;/div&gt;
         &lt;a class&#x3D;&quot;d-inline-block mt-3&quot; routerLink&#x3D;&quot;/login&quot;&gt;Ya tengo cuenta&lt;/a&gt;
+        &lt;div class&#x3D;&quot;alert alert-danger mt-3&quot; *ngIf&#x3D;&quot;submitted &amp;&amp; registerForm.invalid&quot;&gt;Revisa los campos marcados antes de crear la cuenta.&lt;/div&gt;
         &lt;div class&#x3D;&quot;alert alert-success mt-3&quot; *ngIf&#x3D;&quot;success&quot;&gt;Cuenta creada. Ahora puedes iniciar sesion.&lt;/div&gt;
         &lt;div class&#x3D;&quot;alert alert-danger mt-3&quot; *ngIf&#x3D;&quot;duplicate&quot;&gt;Correo ya registrado.&lt;/div&gt;
       &lt;/form&gt;
@@ -817,6 +1043,26 @@ export class RegisterComponent {
     this.registerForm.reset();
   }
 
+  invalid(controlName: string): boolean {
+    const control &#x3D; this.registerForm.get(controlName);
+    return !!control &amp;&amp; this.submitted &amp;&amp; control.invalid;
+  }
+
+  valid(controlName: string): boolean {
+    const control &#x3D; this.registerForm.get(controlName);
+    return !!control &amp;&amp; this.submitted &amp;&amp; control.valid;
+  }
+
+  confirmPasswordInvalid(): boolean {
+    const control &#x3D; this.registerForm.get(&#x27;confirmPassword&#x27;);
+    return !!control &amp;&amp; this.submitted &amp;&amp; (control.invalid || this.registerForm.hasError(&#x27;passwordMismatch&#x27;));
+  }
+
+  confirmPasswordValid(): boolean {
+    const control &#x3D; this.registerForm.get(&#x27;confirmPassword&#x27;);
+    return !!control &amp;&amp; this.submitted &amp;&amp; control.valid &amp;&amp; !this.registerForm.hasError(&#x27;passwordMismatch&#x27;);
+  }
+
   private samePasswordsValidator(control: AbstractControl): ValidationErrors | null {
     const password &#x3D; control.get(&#x27;password&#x27;)?.value;
     const confirmPassword &#x3D; control.get(&#x27;confirmPassword&#x27;)?.value;
@@ -865,7 +1111,7 @@ export class RegisterComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><main class="auth-page">  <form class="auth-card" [formGroup]="registerForm" [class.was-validated]="submitted" novalidate (ngSubmit)="register()">    <span class="eyebrow">Nueva cuenta</span><h1>Registro de usuario</h1>    <div class="row g-3">      <div class="col-12 col-md-6"><label class="form-label" for="regName">Nombre</label><input class="form-control" id="regName" formControlName="name"><div class="invalid-feedback">Solo letras, minimo 3 caracteres.</div></div>      <div class="col-12 col-md-6"><label class="form-label" for="regRut">RUT</label><input class="form-control" id="regRut" formControlName="rut" placeholder="12345678-9"><div class="invalid-feedback">Formato valido: 12345678-9.</div></div>      <div class="col-12"><label class="form-label" for="regEmail">Correo</label><input type="email" class="form-control" id="regEmail" formControlName="email"><div class="invalid-feedback">Ingresa un correo valido.</div></div>      <div class="col-12 col-md-6"><label class="form-label" for="regPhone">Telefono</label><input class="form-control" id="regPhone" formControlName="phone" placeholder="+56 9 1234 5678"><div class="invalid-feedback">Ingresa un telefono chileno valido.</div></div>      <div class="col-12 col-md-6"><label class="form-label" for="regBirthDate">Fecha de nacimiento</label><input type="date" class="form-control" id="regBirthDate" formControlName="birthDate"><div class="invalid-feedback">Debes tener al menos 13 anos.</div></div>      <div class="col-12 col-md-6"><label class="form-label" for="regRole">Tipo de usuario</label><select class="form-select" id="regRole" formControlName="role"><option value="">Selecciona...</option><option value="cliente">Cliente</option><option value="centro">Centro ecuestre</option></select><div class="invalid-feedback">Selecciona un tipo.</div></div>      <div class="col-12"><label class="form-label" for="regAddress">Direccion de despacho (opcional)</label><input class="form-control" id="regAddress" formControlName="address"><div class="form-text">Puedes completarla mas adelante.</div></div>      <div class="col-12 col-md-6"><label class="form-label" for="regPassword">Contrasena</label><input type="password" class="form-control" id="regPassword" formControlName="password"><div class="form-text">Debe tener 6 a 18 caracteres, una mayuscula y un numero.</div><div class="invalid-feedback">La contrasena no cumple las reglas de seguridad.</div></div>      <div class="col-12 col-md-6"><label class="form-label" for="regConfirmPassword">Repetir contrasena</label><input type="password" class="form-control" id="regConfirmPassword" formControlName="confirmPassword"><div class="invalid-feedback">Las contrasenas deben ser iguales.</div></div>    </div>    <div class="d-flex gap-2 mt-4"><button class="btn btn-forest flex-fill" type="submit">Crear cuenta</button><button class="btn btn-outline-dark flex-fill" type="button" (click)="clear()">Limpiar</button></div>    <a class="d-inline-block mt-3" routerLink="/login">Ya tengo cuenta</a>    <div class="alert alert-success mt-3" *ngIf="success">Cuenta creada. Ahora puedes iniciar sesion.</div>    <div class="alert alert-danger mt-3" *ngIf="duplicate">Correo ya registrado.</div>  </form></main></div>'
+        var COMPONENT_TEMPLATE = '<div><main class="auth-page">  <form class="auth-card" [formGroup]="registerForm" novalidate (ngSubmit)="register()">    <span class="eyebrow">Nueva cuenta</span><h1>Registro de usuario</h1>    <div class="row g-3">      <div class="col-12 col-md-6"><label class="form-label" for="regName">Nombre</label><input class="form-control" id="regName" formControlName="name" [class.is-invalid]="invalid(\'name\')" [class.is-valid]="valid(\'name\')"><div class="invalid-feedback">Solo letras, minimo 3 caracteres.</div></div>      <div class="col-12 col-md-6"><label class="form-label" for="regRut">RUT</label><input class="form-control" id="regRut" formControlName="rut" placeholder="12345678-9" [class.is-invalid]="invalid(\'rut\')" [class.is-valid]="valid(\'rut\')"><div class="invalid-feedback">Formato valido: 12345678-9, sin puntos.</div></div>      <div class="col-12"><label class="form-label" for="regEmail">Correo</label><input type="email" class="form-control" id="regEmail" formControlName="email" [class.is-invalid]="invalid(\'email\')" [class.is-valid]="valid(\'email\')"><div class="invalid-feedback">Ingresa un correo valido.</div></div>      <div class="col-12 col-md-6"><label class="form-label" for="regPhone">Telefono</label><input class="form-control" id="regPhone" formControlName="phone" placeholder="+56 9 1234 5678" [class.is-invalid]="invalid(\'phone\')" [class.is-valid]="valid(\'phone\')"><div class="invalid-feedback">Ingresa un telefono chileno valido.</div></div>      <div class="col-12 col-md-6"><label class="form-label" for="regBirthDate">Fecha de nacimiento</label><input type="date" class="form-control" id="regBirthDate" formControlName="birthDate" [class.is-invalid]="invalid(\'birthDate\')" [class.is-valid]="valid(\'birthDate\')"><div class="invalid-feedback">Debes tener al menos 13 anos.</div></div>      <div class="col-12 col-md-6"><label class="form-label" for="regRole">Tipo de usuario</label><select class="form-select" id="regRole" formControlName="role" [class.is-invalid]="invalid(\'role\')" [class.is-valid]="valid(\'role\')"><option value="">Selecciona...</option><option value="cliente">Cliente</option><option value="centro">Centro ecuestre</option></select><div class="invalid-feedback">Selecciona un tipo.</div></div>      <div class="col-12"><label class="form-label" for="regAddress">Direccion de despacho (opcional)</label><input class="form-control" id="regAddress" formControlName="address"><div class="form-text">Puedes completarla mas adelante.</div></div>      <div class="col-12 col-md-6"><label class="form-label" for="regPassword">Contrasena</label><input type="password" class="form-control" id="regPassword" formControlName="password" [class.is-invalid]="invalid(\'password\')" [class.is-valid]="valid(\'password\')"><div class="form-text">Debe tener 6 a 18 caracteres, una mayuscula y un numero.</div><div class="invalid-feedback">La contrasena no cumple las reglas de seguridad.</div></div>      <div class="col-12 col-md-6"><label class="form-label" for="regConfirmPassword">Repetir contrasena</label><input type="password" class="form-control" id="regConfirmPassword" formControlName="confirmPassword" [class.is-invalid]="confirmPasswordInvalid()" [class.is-valid]="confirmPasswordValid()"><div class="invalid-feedback">Las contrasenas deben ser iguales.</div></div>    </div>    <div class="d-flex gap-2 mt-4"><button class="btn btn-forest flex-fill" type="submit">Crear cuenta</button><button class="btn btn-outline-dark flex-fill" type="button" (click)="clear()">Limpiar</button></div>    <a class="d-inline-block mt-3" routerLink="/login">Ya tengo cuenta</a>    <div class="alert alert-danger mt-3" *ngIf="submitted && registerForm.invalid">Revisa los campos marcados antes de crear la cuenta.</div>    <div class="alert alert-success mt-3" *ngIf="success">Cuenta creada. Ahora puedes iniciar sesion.</div>    <div class="alert alert-danger mt-3" *ngIf="duplicate">Correo ya registrado.</div>  </form></main></div>'
     var COMPONENTS = [{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'App', 'selector': 'app-root'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'ForgotComponent', 'selector': 'app-forgot'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'OrdersComponent', 'selector': 'app-orders'},{'name': 'ProductDetailComponent', 'selector': 'app-product-detail'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ShopComponent', 'selector': 'app-shop'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'RegisterComponent'};

@@ -36,17 +36,20 @@ Abrir `http://localhost:4200/`.
 npm run test:ci
 ```
 
-El proyecto incluye 4 pruebas unitarias sobre registro y carrito:
+El proyecto incluye 6 pruebas unitarias sobre registro, carrito y administracion:
 
 - Contrasenas distintas invalidan el formulario.
 - Edad menor a 13 anos invalida el registro.
 - Registro valido normaliza el correo y permite direccion opcional.
 - Checkout permite direccion opcional con carrito valido.
+- Producto sin descripcion no se guarda en inventario.
+- Producto valido se agrega al inventario.
 
 Archivos de pruebas:
 
 - `src/app/pages/register/register.component.spec.ts`
 - `src/app/pages/cart/cart.component.spec.ts`
+- `src/app/pages/admin/admin.component.spec.ts`
 
 ## Estructura Del Proyecto
 

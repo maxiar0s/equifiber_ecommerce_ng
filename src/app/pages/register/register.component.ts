@@ -9,21 +9,22 @@ import { DataService, User } from '../../services/data.service';
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
   template: `
     <main class="auth-page">
-      <form class="auth-card" [formGroup]="registerForm" [class.was-validated]="submitted" novalidate (ngSubmit)="register()">
+      <form class="auth-card" [formGroup]="registerForm" novalidate (ngSubmit)="register()">
         <span class="eyebrow">Nueva cuenta</span><h1>Registro de usuario</h1>
         <div class="row g-3">
-          <div class="col-12 col-md-6"><label class="form-label" for="regName">Nombre</label><input class="form-control" id="regName" formControlName="name"><div class="invalid-feedback">Solo letras, minimo 3 caracteres.</div></div>
-          <div class="col-12 col-md-6"><label class="form-label" for="regRut">RUT</label><input class="form-control" id="regRut" formControlName="rut" placeholder="12345678-9"><div class="invalid-feedback">Formato valido: 12345678-9.</div></div>
-          <div class="col-12"><label class="form-label" for="regEmail">Correo</label><input type="email" class="form-control" id="regEmail" formControlName="email"><div class="invalid-feedback">Ingresa un correo valido.</div></div>
-          <div class="col-12 col-md-6"><label class="form-label" for="regPhone">Telefono</label><input class="form-control" id="regPhone" formControlName="phone" placeholder="+56 9 1234 5678"><div class="invalid-feedback">Ingresa un telefono chileno valido.</div></div>
-          <div class="col-12 col-md-6"><label class="form-label" for="regBirthDate">Fecha de nacimiento</label><input type="date" class="form-control" id="regBirthDate" formControlName="birthDate"><div class="invalid-feedback">Debes tener al menos 13 anos.</div></div>
-          <div class="col-12 col-md-6"><label class="form-label" for="regRole">Tipo de usuario</label><select class="form-select" id="regRole" formControlName="role"><option value="">Selecciona...</option><option value="cliente">Cliente</option><option value="centro">Centro ecuestre</option></select><div class="invalid-feedback">Selecciona un tipo.</div></div>
+          <div class="col-12 col-md-6"><label class="form-label" for="regName">Nombre</label><input class="form-control" id="regName" formControlName="name" [class.is-invalid]="invalid('name')" [class.is-valid]="valid('name')"><div class="invalid-feedback">Solo letras, minimo 3 caracteres.</div></div>
+          <div class="col-12 col-md-6"><label class="form-label" for="regRut">RUT</label><input class="form-control" id="regRut" formControlName="rut" placeholder="12345678-9" [class.is-invalid]="invalid('rut')" [class.is-valid]="valid('rut')"><div class="invalid-feedback">Formato valido: 12345678-9, sin puntos.</div></div>
+          <div class="col-12"><label class="form-label" for="regEmail">Correo</label><input type="email" class="form-control" id="regEmail" formControlName="email" [class.is-invalid]="invalid('email')" [class.is-valid]="valid('email')"><div class="invalid-feedback">Ingresa un correo valido.</div></div>
+          <div class="col-12 col-md-6"><label class="form-label" for="regPhone">Telefono</label><input class="form-control" id="regPhone" formControlName="phone" placeholder="+56 9 1234 5678" [class.is-invalid]="invalid('phone')" [class.is-valid]="valid('phone')"><div class="invalid-feedback">Ingresa un telefono chileno valido.</div></div>
+          <div class="col-12 col-md-6"><label class="form-label" for="regBirthDate">Fecha de nacimiento</label><input type="date" class="form-control" id="regBirthDate" formControlName="birthDate" [class.is-invalid]="invalid('birthDate')" [class.is-valid]="valid('birthDate')"><div class="invalid-feedback">Debes tener al menos 13 anos.</div></div>
+          <div class="col-12 col-md-6"><label class="form-label" for="regRole">Tipo de usuario</label><select class="form-select" id="regRole" formControlName="role" [class.is-invalid]="invalid('role')" [class.is-valid]="valid('role')"><option value="">Selecciona...</option><option value="cliente">Cliente</option><option value="centro">Centro ecuestre</option></select><div class="invalid-feedback">Selecciona un tipo.</div></div>
           <div class="col-12"><label class="form-label" for="regAddress">Direccion de despacho (opcional)</label><input class="form-control" id="regAddress" formControlName="address"><div class="form-text">Puedes completarla mas adelante.</div></div>
-          <div class="col-12 col-md-6"><label class="form-label" for="regPassword">Contrasena</label><input type="password" class="form-control" id="regPassword" formControlName="password"><div class="form-text">Debe tener 6 a 18 caracteres, una mayuscula y un numero.</div><div class="invalid-feedback">La contrasena no cumple las reglas de seguridad.</div></div>
-          <div class="col-12 col-md-6"><label class="form-label" for="regConfirmPassword">Repetir contrasena</label><input type="password" class="form-control" id="regConfirmPassword" formControlName="confirmPassword"><div class="invalid-feedback">Las contrasenas deben ser iguales.</div></div>
+          <div class="col-12 col-md-6"><label class="form-label" for="regPassword">Contrasena</label><input type="password" class="form-control" id="regPassword" formControlName="password" [class.is-invalid]="invalid('password')" [class.is-valid]="valid('password')"><div class="form-text">Debe tener 6 a 18 caracteres, una mayuscula y un numero.</div><div class="invalid-feedback">La contrasena no cumple las reglas de seguridad.</div></div>
+          <div class="col-12 col-md-6"><label class="form-label" for="regConfirmPassword">Repetir contrasena</label><input type="password" class="form-control" id="regConfirmPassword" formControlName="confirmPassword" [class.is-invalid]="confirmPasswordInvalid()" [class.is-valid]="confirmPasswordValid()"><div class="invalid-feedback">Las contrasenas deben ser iguales.</div></div>
         </div>
         <div class="d-flex gap-2 mt-4"><button class="btn btn-forest flex-fill" type="submit">Crear cuenta</button><button class="btn btn-outline-dark flex-fill" type="button" (click)="clear()">Limpiar</button></div>
         <a class="d-inline-block mt-3" routerLink="/login">Ya tengo cuenta</a>
+        <div class="alert alert-danger mt-3" *ngIf="submitted && registerForm.invalid">Revisa los campos marcados antes de crear la cuenta.</div>
         <div class="alert alert-success mt-3" *ngIf="success">Cuenta creada. Ahora puedes iniciar sesion.</div>
         <div class="alert alert-danger mt-3" *ngIf="duplicate">Correo ya registrado.</div>
       </form>
@@ -77,6 +78,26 @@ export class RegisterComponent {
   clear(): void {
     this.submitted = false;
     this.registerForm.reset();
+  }
+
+  invalid(controlName: string): boolean {
+    const control = this.registerForm.get(controlName);
+    return !!control && this.submitted && control.invalid;
+  }
+
+  valid(controlName: string): boolean {
+    const control = this.registerForm.get(controlName);
+    return !!control && this.submitted && control.valid;
+  }
+
+  confirmPasswordInvalid(): boolean {
+    const control = this.registerForm.get('confirmPassword');
+    return !!control && this.submitted && (control.invalid || this.registerForm.hasError('passwordMismatch'));
+  }
+
+  confirmPasswordValid(): boolean {
+    const control = this.registerForm.get('confirmPassword');
+    return !!control && this.submitted && control.valid && !this.registerForm.hasError('passwordMismatch');
   }
 
   private samePasswordsValidator(control: AbstractControl): ValidationErrors | null {
