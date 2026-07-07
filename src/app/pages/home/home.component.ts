@@ -1,9 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink],
+  imports: [CommonModule, RouterLink],
   template: `
     <main>
       <section class="hero-wrap">
@@ -29,23 +31,22 @@ import { RouterLink } from '@angular/router';
       </section>
       <section class="container py-5">
         <div class="row g-4">
-          <div class="col-12 col-md-4"><article class="feature-card"><span>01</span><h3>Natural y reconocible</h3><p>Ingredientes simples, sin saborizantes artificiales ni componentes de bajo valor nutricional.</p></article></div>
-          <div class="col-12 col-md-4"><article class="feature-card featured"><span>02</span><h3>Alto en fibra</h3><p>Formulado para apoyar el bienestar digestivo y entregar un premio mas funcional.</p></article></div>
-          <div class="col-12 col-md-4"><article class="feature-card"><span>03</span><h3>Validado en caballos</h3><p>Prueba de palatabilidad positiva en el Centro de Equinoterapia Kawellche.</p></article></div>
+          <div class="col-12 col-md-4" *ngFor="let feature of data.homeContent.features">
+            <article class="feature-card" [class.featured]="feature.featured"><span>{{ feature.number }}</span><h3>{{ feature.title }}</h3><p>{{ feature.description }}</p></article>
+          </div>
         </div>
       </section>
       <section class="container pb-5">
         <div class="row g-4 align-items-stretch">
           <div class="col-12 col-lg-6"><div class="story-panel h-100"><h2>Para centros ecuestres, equinoterapia y duenos responsables.</h2><p>El canal principal de Equi-Fiber es venta online con despacho, facilitando la compra recurrente para cuidadores, jinetes y centros que buscan una opcion practica y saludable.</p></div></div>
           <div class="col-12 col-lg-6"><div class="row g-3 h-100">
-            <div class="col-6"><div class="metric-box"><strong>120 g</strong><span>por bolsa</span></div></div>
-            <div class="col-6"><div class="metric-box"><strong>6</strong><span>unidades</span></div></div>
-            <div class="col-6"><div class="metric-box"><strong>$2.990</strong><span>precio sugerido</span></div></div>
-            <div class="col-6"><div class="metric-box"><strong>0</strong><span>azucar anadida</span></div></div>
+            <div class="col-6" *ngFor="let metric of data.homeContent.metrics"><div class="metric-box"><strong>{{ metric.value }}</strong><span>{{ metric.label }}</span></div></div>
           </div></div>
         </div>
       </section>
     </main>
   `
 })
-export class HomeComponent {}
+export class HomeComponent {
+  constructor(public data: DataService) {}
+}

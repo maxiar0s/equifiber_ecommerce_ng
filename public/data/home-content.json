@@ -1,0 +1,40 @@
+{
+  "features": [
+    {
+      "number": "01",
+      "title": "Natural y reconocible",
+      "description": "Ingredientes simples, sin saborizantes artificiales ni componentes de bajo valor nutricional.",
+      "featured": false
+    },
+    {
+      "number": "02",
+      "title": "Alto en fibra",
+      "description": "Formulado para apoyar el bienestar digestivo y entregar un premio mas funcional.",
+      "featured": true
+    },
+    {
+      "number": "03",
+      "title": "Validado en caballos",
+      "description": "Prueba de palatabilidad positiva en el Centro de Equinoterapia Kawellche.",
+      "featured": false
+    }
+  ],
+  "metrics": [
+    {
+      "value": "120 g",
+      "label": "por bolsa"
+    },
+    {
+      "value": "6",
+      "label": "unidades"
+    },
+    {
+      "value": "$2.990",
+      "label": "precio sugerido"
+    },
+    {
+      "value": "0",
+      "label": "azucar anadida"
+    }
+  ]
+}

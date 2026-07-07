@@ -1,0 +1,23 @@
+[
+  {
+    "id": "bolsa-120",
+    "name": "Equi-Fiber Bolsa 120 g",
+    "price": 2990,
+    "stock": 42,
+    "desc": "Bolsa con 6 snacks de 20 g, alto en fibra, sin azucar anadida, con linaza y vitamina E."
+  },
+  {
+    "id": "pack-4",
+    "name": "Pack Centro Ecuestre x4",
+    "price": 10990,
+    "stock": 18,
+    "desc": "Cuatro bolsas para entrenamiento, equinoterapia o recompensas saludables frecuentes."
+  },
+  {
+    "id": "pack-10",
+    "name": "Pack Cuidado Mensual x10",
+    "price": 24990,
+    "stock": 9,
+    "desc": "Formato de abastecimiento para cuidadores, jinetes y duenos con compra recurrente."
+  }
+]

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -41,42 +42,41 @@ export interface Session {
   role: string;
 }
 
-const initialProducts: Product[] = [
-  { id: 'bolsa-120', name: 'Equi-Fiber Bolsa 120 g', price: 2990, stock: 42, desc: 'Bolsa con 6 snacks de 20 g, alto en fibra, sin azucar anadida, con linaza y vitamina E.' },
-  { id: 'pack-4', name: 'Pack Centro Ecuestre x4', price: 10990, stock: 18, desc: 'Cuatro bolsas para entrenamiento, equinoterapia o recompensas saludables frecuentes.' },
-  { id: 'pack-10', name: 'Pack Cuidado Mensual x10', price: 24990, stock: 9, desc: 'Formato de abastecimiento para cuidadores, jinetes y duenos con compra recurrente.' }
-];
+export interface HomeFeature {
+  number: string;
+  title: string;
+  description: string;
+  featured: boolean;
+}
 
-const adminUser: User = {
-  name: 'Administrador Equi-Fiber',
-  rut: '11111111-1',
-  email: 'admin@equifiber.cl',
-  phone: '+56 9 1111 1111',
-  role: 'admin',
-  password: 'Admin123!',
-  address: 'Bodega Equi-Fiber',
-  horse: 'Operacion ecommerce'
-};
+export interface HomeMetric {
+  value: string;
+  label: string;
+}
+
+export interface HomeContent {
+  features: HomeFeature[];
+  metrics: HomeMetric[];
+}
 
 /**
- * Centraliza los datos simulados de Equi-Fiber en localStorage.
+ * Centraliza los datos simulados de Equi-Fiber desde archivos JSON y localStorage.
  * Permite demostrar autenticacion por roles, carrito, inventario y compras sin backend real.
  */
 @Injectable({ providedIn: 'root' })
 export class DataService {
-  products = this.load<Product[]>('products', initialProducts);
-  users = this.load<User[]>('users', [adminUser]);
+  products = this.load<Product[]>('products', []);
+  users = this.load<User[]>('users', []);
   cart = this.load<CartItem[]>('cart', []);
   orders = this.load<Order[]>('orders', []);
   session = this.load<Session | null>('session', null);
+  homeContent: HomeContent = { features: [], metrics: [] };
+  loadingJson = this.products.length === 0 || this.users.length === 0;
 
   readonly currency = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 });
 
-  constructor(private router: Router) {
-    if (!this.users.some((user) => user.email === adminUser.email)) {
-      this.users.unshift(adminUser);
-      this.persistUsers();
-    }
+  constructor(private router: Router, private http: HttpClient) {
+    this.loadJsonData();
   }
 
   get cartCount(): number {
@@ -168,5 +168,27 @@ export class DataService {
 
   private save(key: string, value: unknown): void {
     localStorage.setItem(`equifiber_${key}`, JSON.stringify(value));
+  }
+
+  private loadJsonData(): void {
+    if (this.products.length === 0) {
+      this.http.get<Product[]>('/data/products.json').subscribe((products) => {
+        this.products = products;
+        this.persistProducts();
+        this.loadingJson = false;
+      });
+    }
+
+    if (this.users.length === 0) {
+      this.http.get<User[]>('/data/users.json').subscribe((users) => {
+        this.users = users;
+        this.persistUsers();
+        this.loadingJson = false;
+      });
+    }
+
+    this.http.get<HomeContent>('/data/home-content.json').subscribe((content) => {
+      this.homeContent = content;
+    });
   }
 }

@@ -22,10 +22,13 @@ import { DataService, Product } from '../../services/data.service';
   `
 })
 export class ProductDetailComponent {
-  product?: Product;
+  private readonly id: string | null;
 
   constructor(route: ActivatedRoute, public data: DataService) {
-    const id = route.snapshot.paramMap.get('id');
-    this.product = data.products.find((item) => item.id === id);
+    this.id = route.snapshot.paramMap.get('id');
+  }
+
+  get product(): Product | undefined {
+    return this.data.products.find((item) => item.id === this.id);
   }
 }
