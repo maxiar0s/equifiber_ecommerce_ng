@@ -1,6 +1,7 @@
 /// <reference types="jasmine" />
 
 import { FormBuilder } from '@angular/forms';
+import { of } from 'rxjs';
 import { AdminComponent } from './admin.component';
 import { DataService, Product, User } from '../../services/data.service';
 
@@ -20,7 +21,13 @@ describe('AdminComponent', () => {
       users,
       cart: [],
       session: { email: 'admin@equifiber.cl', role: 'admin' },
-      persistProducts: jasmine.createSpy('persistProducts'),
+      createProduct: jasmine.createSpy('createProduct').and.callFake((product: Omit<Product, 'id'>) => {
+        const created = { ...product, id: 'firebase-id' };
+        products.push(created);
+        return of(created);
+      }),
+      updateProduct: jasmine.createSpy('updateProduct').and.callFake((product: Product) => of(product)),
+      deleteProduct: jasmine.createSpy('deleteProduct').and.returnValue(of(undefined)),
       persistUsers: jasmine.createSpy('persistUsers'),
       persistCart: jasmine.createSpy('persistCart'),
       format: (value: number) => `$${value}`

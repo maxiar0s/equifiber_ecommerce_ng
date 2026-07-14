@@ -19,7 +19,8 @@ import { DataService, Product, User } from '../../services/data.service';
             <div class="mb-3"><label class="form-label" for="productDesc">Descripcion</label><textarea class="form-control" id="productDesc" formControlName="desc" [class.is-invalid]="invalid('desc')" [class.is-valid]="valid('desc')"></textarea><div class="invalid-feedback">Describe el producto con al menos 10 caracteres.</div></div>
             <div class="d-flex gap-2"><button class="btn btn-forest flex-fill" type="submit">Guardar producto</button><button class="btn btn-outline-dark flex-fill" type="button" (click)="clear()">Limpiar</button></div>
             <div class="alert alert-danger mt-3" *ngIf="submitted && productForm.invalid">Completa todos los campos requeridos antes de guardar.</div>
-            <div class="alert alert-success mt-3" *ngIf="success">Producto guardado correctamente.</div>
+            <div class="alert alert-success mt-3" *ngIf="success">Producto guardado correctamente en Firebase.</div>
+            <div class="alert alert-danger mt-3" *ngIf="apiError">Firebase no pudo completar la operacion.</div>
           </form>
         </div>
         <div class="col-12 col-xl-8">
@@ -58,6 +59,7 @@ export class AdminComponent {
   userForm: FormGroup;
   submitted = false;
   success = false;
+  apiError = false;
   userSubmitted = false;
   userSuccess = false;
   selectedUserEmail = '';
@@ -84,10 +86,10 @@ export class AdminComponent {
   }
 
   remove(id: string): void {
-    this.data.products = this.data.products.filter((product) => product.id !== id);
-    this.data.cart = this.data.cart.filter((item) => item.id !== id);
-    this.data.persistProducts();
-    this.data.persistCart();
+    this.apiError = false;
+    this.data.deleteProduct(id).subscribe({
+      error: () => this.apiError = true
+    });
   }
 
   canManageUser(email: string): boolean {
@@ -132,22 +134,29 @@ export class AdminComponent {
   save(): void {
     this.submitted = true;
     this.success = false;
+    this.apiError = false;
     if (this.productForm.invalid) return;
     const value = this.productForm.getRawValue();
-    const product = { ...value, id: this.draft.id || `prod-${Date.now()}`, price: Number(value.price), stock: Number(value.stock) };
-    const index = this.data.products.findIndex((item) => item.id === product.id);
-    if (index >= 0) this.data.products[index] = product;
-    else this.data.products.push(product);
-    this.data.persistProducts();
-    this.success = true;
-    this.submitted = false;
-    this.draft = this.emptyProduct();
-    this.productForm.reset({ name: '', price: 1000, stock: 0, desc: '' });
+    const payload = { ...value, price: Number(value.price), stock: Number(value.stock) };
+    const request = this.draft.id
+      ? this.data.updateProduct({ ...payload, id: this.draft.id })
+      : this.data.createProduct(payload);
+
+    request.subscribe({
+      next: () => {
+        this.success = true;
+        this.submitted = false;
+        this.draft = this.emptyProduct();
+        this.productForm.reset({ name: '', price: 1000, stock: 0, desc: '' });
+      },
+      error: () => this.apiError = true
+    });
   }
 
   clear(): void {
     this.submitted = false;
     this.success = false;
+    this.apiError = false;
     this.draft = this.emptyProduct();
     this.productForm.reset({ name: '', price: 1000, stock: 0, desc: '' });
   }

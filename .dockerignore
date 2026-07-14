@@ -1,0 +1,9 @@
+.angular
+.atl
+.git
+.vscode
+coverage
+dist
+documentation
+node_modules
+npm-debug.log

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, map, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface Product {
   id: string;
@@ -65,13 +67,15 @@ export interface HomeContent {
  */
 @Injectable({ providedIn: 'root' })
 export class DataService {
-  products = this.load<Product[]>('products', []);
+  products: Product[] = [];
   users = this.load<User[]>('users', []);
   cart = this.load<CartItem[]>('cart', []);
   orders = this.load<Order[]>('orders', []);
   session = this.load<Session | null>('session', null);
   homeContent: HomeContent = { features: [], metrics: [] };
-  loadingJson = this.products.length === 0 || this.users.length === 0;
+  loadingJson = true;
+
+  private readonly productsUrl = `${environment.firebaseDatabaseUrl}/products`;
 
   readonly currency = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 });
 
@@ -128,6 +132,35 @@ export class DataService {
     return true;
   }
 
+  createProduct(product: Omit<Product, 'id'>): Observable<Product> {
+    return this.http.post<{ name: string }>(`${this.productsUrl}.json`, product).pipe(
+      map((response) => ({ ...product, id: response.name })),
+      tap((created) => this.products.push(created))
+    );
+  }
+
+  updateProduct(product: Product): Observable<Product> {
+    const { id, ...payload } = product;
+    return this.http.put<Omit<Product, 'id'>>(`${this.productsUrl}/${encodeURIComponent(id)}.json`, payload).pipe(
+      map((updated) => ({ ...updated, id })),
+      tap((updated) => {
+        const index = this.products.findIndex((item) => item.id === id);
+        if (index >= 0) this.products[index] = updated;
+      })
+    );
+  }
+
+  deleteProduct(id: string): Observable<void> {
+    return this.http.delete<null>(`${this.productsUrl}/${encodeURIComponent(id)}.json`).pipe(
+      tap(() => {
+        this.products = this.products.filter((product) => product.id !== id);
+        this.cart = this.cart.filter((item) => item.id !== id);
+        this.persistCart();
+      }),
+      map(() => undefined)
+    );
+  }
+
   logout(): void {
     this.session = null;
     this.persistSession();
@@ -147,15 +180,16 @@ export class DataService {
     });
     this.cart.forEach((item) => {
       const product = this.products.find((candidate) => candidate.id === item.id);
-      if (product) product.stock = Math.max(0, product.stock - item.qty);
+      if (product) {
+        product.stock = Math.max(0, product.stock - item.qty);
+        this.updateProduct(product).subscribe();
+      }
     });
     this.cart = [];
     this.persistOrders();
-    this.persistProducts();
     this.persistCart();
   }
 
-  persistProducts(): void { this.save('products', this.products); }
   persistUsers(): void { this.save('users', this.users); }
   persistCart(): void { this.save('cart', this.cart); }
   persistOrders(): void { this.save('orders', this.orders); }
@@ -171,19 +205,15 @@ export class DataService {
   }
 
   private loadJsonData(): void {
-    if (this.products.length === 0) {
-      this.http.get<Product[]>('/data/products.json').subscribe((products) => {
-        this.products = products;
-        this.persistProducts();
-        this.loadingJson = false;
-      });
-    }
+    this.http.get<Record<string, Omit<Product, 'id'>> | null>(`${this.productsUrl}.json`).subscribe((products) => {
+      this.products = Object.entries(products ?? {}).map(([id, product]) => ({ ...product, id }));
+      this.loadingJson = false;
+    });
 
     if (this.users.length === 0) {
       this.http.get<User[]>('/data/users.json').subscribe((users) => {
         this.users = users;
         this.persistUsers();
-        this.loadingJson = false;
       });
     }
 
