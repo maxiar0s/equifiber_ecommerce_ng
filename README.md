@@ -38,7 +38,7 @@ Abrir `http://localhost:4200/`.
 npm run test:ci
 ```
 
-El proyecto incluye 13 pruebas unitarias sobre registro, carrito, administracion y API REST:
+El proyecto incluye 15 pruebas unitarias sobre registro, carrito, administracion y API REST:
 
 - Contrasenas distintas invalidan el formulario.
 - Edad menor a 13 anos invalida el registro.
@@ -50,6 +50,8 @@ El proyecto incluye 13 pruebas unitarias sobre registro, carrito, administracion
 - Productos se crean mediante POST.
 - Productos se actualizan mediante PUT.
 - Productos se eliminan mediante DELETE.
+- Usuarios de demostracion se guardan y consumen desde Firebase.
+- Perfiles de usuario se eliminan desde Firebase.
 
 Archivos de pruebas:
 
@@ -105,9 +107,11 @@ https://equifiber-240b7-default-rtdb.firebaseio.com/products.json
 | Actualizar producto | PUT | `/products/{id}.json` |
 | Eliminar producto | DELETE | `/products/{id}.json` |
 
-Los usuarios y contrasenas de demostracion permanecen locales y no se publican en Firebase.
+Firebase almacena usuarios de demostracion bajo `/users/{rut}.json`, incluyendo sus claves ficticias para permitir el inicio de sesion sin integrar Firebase Authentication.
 
-Las reglas de `database.rules.json` bloquean el resto de la base y habilitan escritura publica solamente sobre productos ficticios. Esta configuracion es adecuada para la demostracion academica, pero una aplicacion real deberia exigir Firebase Authentication.
+> Advertencia: este enfoque es exclusivamente academico. Las reglas permiten leer credenciales ficticias para demostrar el consumo de datos; nunca debe utilizarse con usuarios o contrasenas reales.
+
+Las reglas de `database.rules.json` bloquean el resto de la base y habilitan acceso solamente a productos y usuarios ficticios. Una aplicacion real deberia utilizar Firebase Authentication.
 
 Para publicar las reglas con Firebase CLI:
 

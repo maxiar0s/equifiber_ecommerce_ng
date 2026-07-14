@@ -23,6 +23,40 @@
           ".validate": false
         }
       }
+    },
+    "users": {
+      ".read": true,
+      "$userId": {
+        ".write": "$userId !== '11111111-1' || !data.exists()",
+        ".validate": "newData.hasChildren(['name', 'rut', 'email', 'phone', 'role', 'password', 'address', 'horse'])",
+        "name": {
+          ".validate": "newData.isString() && newData.val().length >= 3"
+        },
+        "rut": {
+          ".validate": "newData.isString() && newData.val() === $userId"
+        },
+        "email": {
+          ".validate": "newData.isString() && newData.val().matches(/^[^@]+@[^@]+\\.[^@]+$/)"
+        },
+        "phone": {
+          ".validate": "newData.isString() && newData.val().length >= 8"
+        },
+        "role": {
+          ".validate": "newData.val() === 'cliente' || newData.val() === 'centro' || ($userId === '11111111-1' && newData.val() === 'admin')"
+        },
+        "password": {
+          ".validate": "newData.isString() && newData.val().length >= 6 && newData.val().length <= 18"
+        },
+        "address": {
+          ".validate": "newData.isString()"
+        },
+        "horse": {
+          ".validate": "newData.isString()"
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
     }
   }
 }

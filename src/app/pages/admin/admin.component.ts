@@ -46,6 +46,7 @@ import { DataService, Product, User } from '../../services/data.service';
               <div class="d-flex gap-2 mt-3"><button class="btn btn-forest" type="submit">Guardar usuario</button><button class="btn btn-outline-dark" type="button" (click)="clearUser()">Cancelar</button></div>
               <div class="alert alert-danger mt-3" *ngIf="userSubmitted && userForm.invalid">Revisa los campos del usuario.</div>
               <div class="alert alert-success mt-3" *ngIf="userSuccess">Usuario actualizado correctamente.</div>
+              <div class="alert alert-danger mt-3" *ngIf="userApiError">Firebase no pudo completar la operacion del usuario.</div>
             </form>
           </div>
         </div>
@@ -62,6 +63,7 @@ export class AdminComponent {
   apiError = false;
   userSubmitted = false;
   userSuccess = false;
+  userApiError = false;
   selectedUserEmail = '';
 
   constructor(public data: DataService, private fb: FormBuilder) {
@@ -99,9 +101,16 @@ export class AdminComponent {
 
   removeUser(email: string): void {
     if (!this.canManageUser(email)) return;
-    this.data.users = this.data.users.filter((user) => user.email.toLowerCase() !== email.toLowerCase());
-    this.data.persistUsers();
-    if (this.selectedUserEmail.toLowerCase() === email.toLowerCase()) this.clearUser();
+    const user = this.data.users.find((item) => item.email.toLowerCase() === email.toLowerCase());
+    if (!user) return;
+    this.userApiError = false;
+    this.data.deleteUser(user).subscribe({
+      next: () => {
+        this.data.users = this.data.users.filter((item) => item.email.toLowerCase() !== email.toLowerCase());
+        if (this.selectedUserEmail.toLowerCase() === email.toLowerCase()) this.clearUser();
+      },
+      error: () => this.userApiError = true
+    });
   }
 
   editUser(user: User): void {
@@ -109,25 +118,32 @@ export class AdminComponent {
     this.selectedUserEmail = user.email;
     this.userSubmitted = false;
     this.userSuccess = false;
+    this.userApiError = false;
     this.userForm.reset({ name: user.name, role: user.role, phone: user.phone });
   }
 
   saveUser(): void {
     this.userSubmitted = true;
     this.userSuccess = false;
+    this.userApiError = false;
     if (!this.selectedUserEmail || this.userForm.invalid) return;
     const user = this.data.users.find((item) => item.email.toLowerCase() === this.selectedUserEmail.toLowerCase());
     if (!user) return;
     Object.assign(user, this.userForm.getRawValue());
-    this.data.persistUsers();
-    this.userSuccess = true;
-    this.userSubmitted = false;
+    this.data.saveUser(user).subscribe({
+      next: () => {
+        this.userSuccess = true;
+        this.userSubmitted = false;
+      },
+      error: () => this.userApiError = true
+    });
   }
 
   clearUser(): void {
     this.selectedUserEmail = '';
     this.userSubmitted = false;
     this.userSuccess = false;
+    this.userApiError = false;
     this.userForm.reset({ name: '', role: 'cliente', phone: '' });
   }
 

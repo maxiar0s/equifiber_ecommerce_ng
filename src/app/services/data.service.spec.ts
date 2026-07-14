@@ -5,7 +5,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
-import { DataService, Product } from './data.service';
+import { DataService, Product, User } from './data.service';
 
 describe('DataService Firebase products', () => {
   let service: DataService;
@@ -30,7 +30,7 @@ describe('DataService Firebase products', () => {
     productsRequest.flush({
       existing: { name: 'Existing product', price: 1000, stock: 2, desc: 'Existing product description' }
     });
-    http.expectOne('/data/users.json').flush([]);
+    http.expectOne(`${environment.firebaseDatabaseUrl}/users.json`).flush({});
     http.expectOne('/data/home-content.json').flush({ features: [], metrics: [] });
   });
 
@@ -73,5 +73,26 @@ describe('DataService Firebase products', () => {
     expect(request.request.method).toBe('DELETE');
     request.flush(null);
     expect(service.products).toEqual([]);
+  });
+
+  it('saves a demonstration user in Firebase', () => {
+    const user: User = { name: 'Maria Perez', rut: '12345678-9', email: 'maria@correo.cl', phone: '+56 9 1234 5678', role: 'cliente', password: 'Clave123', address: '', horse: 'Relampago' };
+
+    service.saveUser(user).subscribe();
+
+    const request = http.expectOne(`${environment.firebaseDatabaseUrl}/users/12345678-9.json`);
+    expect(request.request.method).toBe('PUT');
+    expect(request.request.body).toEqual(user);
+    request.flush(user);
+  });
+
+  it('deletes a user profile from Firebase', () => {
+    const user: User = { name: 'Maria Perez', rut: '12345678-9', email: 'maria@correo.cl', phone: '+56 9 1234 5678', role: 'cliente', password: 'Clave123', address: '', horse: 'Relampago' };
+
+    service.deleteUser(user).subscribe();
+
+    const request = http.expectOne(`${environment.firebaseDatabaseUrl}/users/12345678-9.json`);
+    expect(request.request.method).toBe('DELETE');
+    request.flush(null);
   });
 });

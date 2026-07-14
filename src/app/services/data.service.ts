@@ -62,13 +62,13 @@ export interface HomeContent {
 }
 
 /**
- * Centraliza los datos simulados de Equi-Fiber desde archivos JSON y localStorage.
- * Permite demostrar autenticacion por roles, carrito, inventario y compras sin backend real.
+ * Centraliza productos y usuarios de demostracion desde Firebase Realtime Database.
+ * Mantiene carrito, compras y sesion en localStorage para completar la experiencia local.
  */
 @Injectable({ providedIn: 'root' })
 export class DataService {
   products: Product[] = [];
-  users = this.load<User[]>('users', []);
+  users: User[] = [];
   cart = this.load<CartItem[]>('cart', []);
   orders = this.load<Order[]>('orders', []);
   session = this.load<Session | null>('session', null);
@@ -76,6 +76,7 @@ export class DataService {
   loadingJson = true;
 
   private readonly productsUrl = `${environment.firebaseDatabaseUrl}/products`;
+  private readonly usersUrl = `${environment.firebaseDatabaseUrl}/users`;
 
   readonly currency = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 });
 
@@ -125,11 +126,23 @@ export class DataService {
     return true;
   }
 
-  register(user: User): boolean {
-    if (this.users.some((item) => item.email.toLowerCase() === user.email.toLowerCase())) return false;
-    this.users.push(user);
-    this.persistUsers();
-    return true;
+  register(user: User): Observable<User> | null {
+    if (this.users.some((item) => item.email.toLowerCase() === user.email.toLowerCase())) return null;
+    return this.saveUser(user).pipe(
+      tap((created) => {
+        this.users.push(created);
+      })
+    );
+  }
+
+  saveUser(user: User): Observable<User> {
+    return this.http.put<User>(`${this.usersUrl}/${encodeURIComponent(user.rut)}.json`, user);
+  }
+
+  deleteUser(user: User): Observable<void> {
+    return this.http.delete<null>(`${this.usersUrl}/${encodeURIComponent(user.rut)}.json`).pipe(
+      map(() => undefined)
+    );
   }
 
   createProduct(product: Omit<Product, 'id'>): Observable<Product> {
@@ -190,7 +203,6 @@ export class DataService {
     this.persistCart();
   }
 
-  persistUsers(): void { this.save('users', this.users); }
   persistCart(): void { this.save('cart', this.cart); }
   persistOrders(): void { this.save('orders', this.orders); }
   persistSession(): void { this.save('session', this.session); }
@@ -210,12 +222,9 @@ export class DataService {
       this.loadingJson = false;
     });
 
-    if (this.users.length === 0) {
-      this.http.get<User[]>('/data/users.json').subscribe((users) => {
-        this.users = users;
-        this.persistUsers();
-      });
-    }
+    this.http.get<Record<string, User> | null>(`${this.usersUrl}.json`).subscribe((users) => {
+      this.users = Object.values(users ?? {});
+    });
 
     this.http.get<HomeContent>('/data/home-content.json').subscribe((content) => {
       this.homeContent = content;

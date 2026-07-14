@@ -1,6 +1,7 @@
 /// <reference types="jasmine" />
 
 import { FormBuilder } from '@angular/forms';
+import { of } from 'rxjs';
 import { DataService, User } from '../../services/data.service';
 import { RegisterComponent } from './register.component';
 
@@ -13,7 +14,7 @@ describe('RegisterComponent', () => {
     const data = {
       register: (user: User) => {
         savedUser = user;
-        return true;
+        return of(user);
       }
     } as unknown as DataService;
 

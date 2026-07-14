@@ -27,6 +27,7 @@ import { DataService, User } from '../../services/data.service';
         <div class="alert alert-danger mt-3" *ngIf="submitted && registerForm.invalid">Revisa los campos marcados antes de crear la cuenta.</div>
         <div class="alert alert-success mt-3" *ngIf="success">Cuenta creada. Ahora puedes iniciar sesion.</div>
         <div class="alert alert-danger mt-3" *ngIf="duplicate">Correo ya registrado.</div>
+        <div class="alert alert-danger mt-3" *ngIf="apiError">No se pudo registrar el perfil en Firebase.</div>
       </form>
     </main>
   `
@@ -36,6 +37,7 @@ export class RegisterComponent {
   submitted = false;
   success = false;
   duplicate = false;
+  apiError = false;
 
   constructor(private data: DataService, private fb: FormBuilder) {
     this.registerForm = this.fb.nonNullable.group({
@@ -55,6 +57,7 @@ export class RegisterComponent {
     this.submitted = true;
     this.success = false;
     this.duplicate = false;
+    this.apiError = false;
     if (this.registerForm.invalid) return;
     const value = this.registerForm.getRawValue();
     const user: User = {
@@ -67,12 +70,16 @@ export class RegisterComponent {
       address: value.address.trim(),
       horse: ''
     };
-    const created = this.data.register(user);
-    this.duplicate = !created;
-    this.success = created;
-    if (created) {
-      this.clear();
-    }
+    const request = this.data.register(user);
+    this.duplicate = request === null;
+    if (!request) return;
+    request.subscribe({
+      next: () => {
+        this.success = true;
+        this.clear();
+      },
+      error: () => this.apiError = true
+    });
   }
 
   clear(): void {

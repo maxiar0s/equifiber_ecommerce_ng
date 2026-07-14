@@ -28,7 +28,8 @@ describe('AdminComponent', () => {
       }),
       updateProduct: jasmine.createSpy('updateProduct').and.callFake((product: Product) => of(product)),
       deleteProduct: jasmine.createSpy('deleteProduct').and.returnValue(of(undefined)),
-      persistUsers: jasmine.createSpy('persistUsers'),
+      saveUser: jasmine.createSpy('saveUser').and.callFake((user: User) => of(user)),
+      deleteUser: jasmine.createSpy('deleteUser').and.returnValue(of(undefined)),
       persistCart: jasmine.createSpy('persistCart'),
       format: (value: number) => `$${value}`
     } as unknown as DataService;
